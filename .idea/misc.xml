@@ -7,6 +7,7 @@
         <entry key="..\:/Android/Projects/Travin/app/src/debug/res/drawable-anydpi/ic_home_select.xml" value="0.138" />
         <entry key="..\:/Android/Projects/Travin/app/src/debug/res/drawable-xxhdpi/bg_edit.xml" value="0.1665" />
         <entry key="..\:/Android/Projects/Travin/app/src/debug/res/drawable-xxhdpi/line_edit.xml" value="0.1665" />
+        <entry key="..\:/Android/Projects/Travin/app/src/main/res/drawable-anydpi/bg_chat.xml" value="0.1485" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/drawable-anydpi/bg_rectangle.xml" value="0.134" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/drawable-anydpi/ic_favorite.xml" value="0.138" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/drawable-anydpi/ic_go_back.xml" value="0.138" />
@@ -36,6 +37,7 @@
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/item_tab2_recycler_question.xml" value="0.25" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/item_tab3_recycler_useful_info.xml" value="0.31261261261261264" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/menu/bnv.xml" value="0.31261261261261264" />
+        <entry key="..\:/Android/Projects/Travin/app/src/main/res/menu/bnv_chat.xml" value="0.3117117117117117" />
       </map>
     </option>
   </component>
