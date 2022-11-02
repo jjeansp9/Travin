@@ -1,9 +1,9 @@
 package com.jspstudio.travin
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import androidx.appcompat.app.AppCompatActivity
 import com.jspstudio.travin.databinding.ActivityMessageChattingBinding
-import com.jspstudio.travin.databinding.ActivitySignUpBinding
 
 class MessageChattingActivity : AppCompatActivity() {
 
@@ -19,6 +19,11 @@ class MessageChattingActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.bnv_chat, menu) //Todo 앱바 인플레이트해서 센드아이콘 붙이기
+        return super.onCreateOptionsMenu(menu)
     }
 
     override fun onSupportNavigateUp(): Boolean {

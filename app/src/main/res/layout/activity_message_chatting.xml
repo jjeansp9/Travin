@@ -46,10 +46,9 @@
 
             <EditText
                 android:id="@+id/et_chat"
-                android:layout_width="20dp"
+                android:layout_width="290dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/bg_chat"
-                android:hint="채팅"
                 android:maxLines="4"
                 android:inputType="text"
                 android:maxLength="40"
