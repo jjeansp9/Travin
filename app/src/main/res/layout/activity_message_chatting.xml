@@ -19,27 +19,65 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Userr"
+                android:text="User"
                 android:textSize="22sp"
                 android:textColor="@color/black"
                 android:textStyle="bold"/>
 
         </androidx.appcompat.widget.Toolbar>
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/msg_chat_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/bnv_message"
         android:layout_below="@id/appbar_layout"/>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bnv_message"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="1dp"/>
+        app:layout_scrollFlags="scroll|enterAlways">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/et_chat"
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_chat"
+                android:hint="채팅"
+                android:maxLines="4"
+                android:inputType="text"
+                android:maxLength="40"
+                android:paddingLeft="16dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:layout_marginRight="60dp"
+                />
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <EditText
+        android:id="@+id/et_name"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/bg_rectangle"
+        android:hint="닉네임을 입력하세요"
+        android:inputType="text"
+        android:maxLength="12"
+        android:padding="8dp"
+        android:textSize="14sp" />
+
+
 
 
 </RelativeLayout>
