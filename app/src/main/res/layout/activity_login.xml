@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <ImageView
+        android:id="@+id/brand_logo"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="130dp"
+        android:src="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/tv_brand_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TRAVIN"
+        android:layout_below="@id/brand_logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/tv_brand_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_brand_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="여행 정보를 사람들과 공유하세요"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:id="@+id/kakao_logo_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_brand_subtitle"
+        android:layout_marginTop="48dp">
+
+        <ImageView
+            android:id="@+id/kakao_login"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="36dp"
+            android:layout_marginBottom="36dp"
+            android:background="@drawable/kakao_button" />
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/kakao_logo_2"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="106dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="150dp"
+            android:text="카카오톡으로 계속하기"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/naver_login"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/google_logo"
+        android:layout_below="@id/kakao_logo_box"
+        android:layout_toStartOf="@id/google_login"
+        android:layout_margin="8dp"/>
+
+    <ImageView
+        android:id="@+id/google_login"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_below="@id/kakao_logo_box"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/naver_logo"
+        android:layout_margin="8dp"/>
+
+    <ImageView
+        android:id="@+id/facebook_login"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_below="@id/kakao_logo_box"
+        android:layout_margin="8dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:layout_toEndOf="@id/google_login"
+        android:src="@drawable/facebook_logo" />
+
+    <TextView
+        android:id="@+id/account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/google_login"
+        android:layout_marginLeft="113dp"
+        android:layout_marginTop="16dp"
+        android:text="이미 계정이 있나요?" />
+
+    <TextView
+        android:id="@+id/btn_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/google_login"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_toEndOf="@id/account"
+        android:text="로그인"
+        android:textColor="#2E1FFB"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_below="@id/btn_login"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        android:backgroundTint="@color/btn"
+        android:text="일반회원으로 가입하기"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>

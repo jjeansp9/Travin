@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="10dp"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="여행 질문"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_margin="16dp"
+        />
+
+    <TextView
+        android:id="@+id/tv_tab2_contents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:text="여러분! 이 사진에 관해서 질문이 있습니다."
+        android:textSize="16sp"
+        android:ellipsize="end"
+        android:maxLines="3"/>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:cardCornerRadius="8dp"
+        android:layout_below="@id/tv_tab2_contents"
+        android:layout_margin="16dp">
+
+        <ImageView
+            android:id="@+id/iv_tab2_picture"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/newyork"
+            android:scaleType="centerCrop"/>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tv_tab2_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jsp_93"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_below="@id/cardview"/>
+
+    <TextView
+        android:id="@+id/tv_tab2_time_before"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="12시간 전"
+        android:textStyle="bold"
+        android:layout_below="@id/cardview"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="16dp"/>
+
+    <ImageView
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:src="@drawable/line_edit"
+        android:layout_below="@id/tv_tab2_name"/>
+
+    <ImageView
+        android:id="@+id/iv_msg"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:src="@drawable/ic_message"
+        android:layout_below="@id/line"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/tv_tab2_comment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="답글 달기"
+        android:layout_below="@id/line"
+        android:layout_toEndOf="@id/iv_msg"
+        android:layout_margin="8dp"/>
+
+</RelativeLayout>

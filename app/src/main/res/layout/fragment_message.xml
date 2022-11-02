@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MessageFragment">
+
+    <TextView
+        android:id="@+id/msg_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="메세지"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"/>
+
+    <ImageView
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:src="@drawable/line_edit"
+        android:layout_below="@id/msg_title"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/msg_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/line"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="vertical"
+        app:reverseLayout="true"
+        app:stackFromEnd="true"/>
+
+    <Button
+        android:id="@+id/btn_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#13529E"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:text="채팅화면으로 가기(테스트용)"
+        />
+
+</RelativeLayout>

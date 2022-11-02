@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AccountFragment">
+
+    <TextView
+        android:id="@+id/account_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="내 프로필"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/account_profile"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/ic_profile"
+        android:layout_below="@id/account_title"
+        android:layout_margin="16dp"/>
+
+    <TextView
+        android:id="@+id/account_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="홍길동"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_below="@id/account_profile"
+        android:layout_marginLeft="16dp"
+        />
+
+    <TextView
+        android:id="@+id/account_aboutme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/account_name"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:text="안녕하세요! 반가워요."
+        android:lines="2"/>
+
+    <TextView
+        android:id="@+id/account_keyword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="홍길동님의 여행스타일"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_below="@id/account_aboutme"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="14dp"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:src="@drawable/line_edit"
+        android:layout_below="@id/account_keyword"
+        android:layout_marginTop="40dp"/>
+
+
+
+</RelativeLayout>

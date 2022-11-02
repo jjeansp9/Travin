@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout"
+    android:layout_width="match_parent"
+    android:layout_height="80dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/msg_profile"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        android:src="@drawable/ic_profile"
+        android:layout_margin="16dp"/>
+
+    <TextView
+        android:id="@+id/msg_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:layout_toEndOf="@id/msg_profile"
+        android:text="홍길동"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/msg_contents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/msg_name"
+        android:layout_marginRight="4dp"
+        android:layout_toStartOf="@id/msg_time"
+        android:layout_toEndOf="@id/msg_profile"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="안녕하세요. 홍길동입니다!" />
+
+    <TextView
+        android:id="@+id/msg_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="오후 14:58"
+        android:textSize="12sp"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:layout_marginRight="16dp"/>
+
+</RelativeLayout>
