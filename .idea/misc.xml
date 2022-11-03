@@ -9,6 +9,7 @@
         <entry key="..\:/Android/Projects/Travin/app/src/debug/res/drawable-xxhdpi/bg_edit_chat.xml" value="0.1435" />
         <entry key="..\:/Android/Projects/Travin/app/src/debug/res/drawable-xxhdpi/line_edit.xml" value="0.1665" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/drawable-anydpi/bg_rectangle.xml" value="0.134" />
+        <entry key="..\:/Android/Projects/Travin/app/src/main/res/drawable-anydpi/ic_add_write.xml" value="0.121" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/drawable-anydpi/ic_favorite.xml" value="0.138" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/drawable-anydpi/ic_go_back.xml" value="0.138" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/drawable-anydpi/ic_home.xml" value="0.138" />
@@ -20,7 +21,7 @@
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/activity_keyword_select.xml" value="0.22" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/activity_main.xml" value="0.22" />
-        <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/activity_message_chatting.xml" value="0.25" />
+        <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/activity_message_chatting.xml" value="0.22" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/activity_sign_in.xml" value="0.25" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/fragment_account.xml" value="0.25" />
@@ -34,6 +35,7 @@
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/item_recycler_home.xml" value="0.25" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/item_recycler_home_popular.xml" value="0.31261261261261264" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/item_recycler_message.xml" value="0.25" />
+        <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/item_recycler_message_chat.xml" value="0.22" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/item_tab2_recycler_question.xml" value="0.25" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/item_tab3_recycler_useful_info.xml" value="0.31261261261261264" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/menu/bnv.xml" value="0.31261261261261264" />

@@ -62,7 +62,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_below="@id/home_popular_recycler"
-                    android:background="#DCDCDC"
+                    android:background="#ECECEC"
                     android:orientation="vertical"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:reverseLayout="true"
@@ -71,7 +71,6 @@
             </RelativeLayout>
 
         </androidx.core.widget.NestedScrollView>
-
 
     </RelativeLayout>
 

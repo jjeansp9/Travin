@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
+    android:layout_marginTop="7dp"
     android:background="@color/white">
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -11,19 +11,20 @@
         android:layout_height="64dp"
         android:layout_marginLeft="16dp"
         android:layout_marginBottom="6dp"
+        android:layout_marginTop="8dp"
         android:src="@drawable/ic_profile" />
 
     <TextView
         android:id="@+id/tv_home_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="6dp"
+        android:layout_toEndOf="@id/iv_home_profile"
         android:text="홍길동"
         android:textColor="@color/black"
-        android:textStyle="bold"
-        android:layout_toEndOf="@id/iv_home_profile"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="6dp"
-        android:layout_marginLeft="6dp"/>
+        android:textStyle="bold" />
     
     <TextView
         android:id="@+id/tv_home_location"
@@ -77,12 +78,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/ic_home_favorite"
         android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
         android:layout_marginTop="8dp"
+        android:layout_marginRight="16dp"
         android:layout_marginBottom="8dp"
         android:ellipsize="end"
         android:maxLines="3"
         android:text="오늘 여행다녀온 곳은 프랑스 파리의 에펠탑입니다." />
+
 
 </RelativeLayout>
 
