@@ -31,49 +31,15 @@
         android:id="@+id/msg_chat_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/layout_message"
-        android:layout_below="@id/appbar_layout" />
+        android:layout_above="@id/bnv_message"
+        android:layout_below="@id/appbar_layout"/>
 
-    <LinearLayout
-        android:id="@+id/layout_message"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bnv_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="20"
-            android:src="@drawable/ic_add_chat"
-            android:layout_marginLeft="8dp"/>
-
-        <EditText
-            android:id="@+id/bnv_chat_input"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="5"
-            android:background="@drawable/bg_edit_chat"
-            android:hint="채팅"
-            android:paddingLeft="20dp"
-            android:paddingTop="6dp"
-            android:paddingBottom="6dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginLeft="8dp"/>
-
-        <ImageView
-            android:id="@+id/bnv_chat_send"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="20"
-            android:text="ggg"
-            android:layout_gravity="right"
-            android:gravity="center"
-            android:layout_marginRight="16dp"
-            android:src="@drawable/ic_chat_send"/>
-
-    </LinearLayout>
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="1dp"/>
 
 
 </RelativeLayout>

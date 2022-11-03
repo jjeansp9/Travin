@@ -1,9 +1,9 @@
 package com.jspstudio.travin
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import androidx.appcompat.app.AppCompatActivity
 import com.jspstudio.travin.databinding.ActivityMessageChattingBinding
-import com.jspstudio.travin.databinding.ActivitySignUpBinding
 
 class MessageChattingActivity : AppCompatActivity() {
 

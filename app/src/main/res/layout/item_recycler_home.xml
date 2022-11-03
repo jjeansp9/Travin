@@ -72,6 +72,8 @@
         android:layout_marginTop="8dp"
         android:layout_toEndOf="@id/ic_home_favorite"/>
 
+
+
     <TextView
         android:id="@+id/tv_home_contents"
         android:layout_width="wrap_content"
