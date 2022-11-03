@@ -35,6 +35,8 @@
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/fragment_tab1_community.xml" value="0.25" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/fragment_tab2_question.xml" value="0.25" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/fragment_tab3_useful_info.xml" value="0.25" />
+        <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/fragment_tab4_accompany.xml" value="0.25" />
+        <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/fragment_tab5_review.xml" value="0.31261261261261264" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/item_recycler_home.xml" value="0.25" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/item_recycler_home_popular.xml" value="0.31261261261261264" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/item_recycler_message.xml" value="0.25" />
@@ -42,7 +44,9 @@
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/item_recycler_message_mychat.xml" value="0.22" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/item_recycler_message_otherchat.xml" value="0.25" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/item_tab2_recycler_question.xml" value="0.25" />
-        <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/item_tab3_recycler_useful_info.xml" value="0.31261261261261264" />
+        <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/item_tab3_recycler_useful_info.xml" value="0.25" />
+        <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/item_tab4_recycler_accompany.xml" value="0.25" />
+        <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/item_tab5_recycler_review.xml" value="0.25" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/menu/bnv.xml" value="0.31261261261261264" />
       </map>
     </option>

@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.tabs.TabLayoutMediator
 import com.jspstudio.travin.databinding.FragmentCommunityBinding
 
@@ -30,20 +32,18 @@ class CommunityFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
         adapter= activity?.let { CommunityPagerAdapter(it) }
         binding.pager.adapter = adapter
 
         //탭레이아웃과 뷰페이저 연동해주는 중재자(Mediator)
-        val mediator = TabLayoutMediator(
-            binding.tabLayout, binding.pager
-        ) { tab, position -> tab.text = tabMenu[position] }
+        val mediator = TabLayoutMediator(binding.tabLayout, binding.pager) { tab, position -> tab.text = tabMenu[position] }
         mediator.attach()
 
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        mBinding = null
-    }
+
+
 
 }
