@@ -7,7 +7,7 @@
         android:id="@+id/msg_chat_other_profile"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/ic_profile"
+        android:src="@drawable/profile"
         android:layout_marginTop="8dp"
         android:layout_marginLeft="16dp"/>
 
@@ -15,11 +15,12 @@
         android:id="@+id/msg_chat_other_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="user name"
-        android:layout_toRightOf="@id/msg_chat_other_profile"
         android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_toRightOf="@id/msg_chat_other_profile"
+        android:text="user name"
         android:textSize="16sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/msg_chat_other_box"
@@ -29,6 +30,7 @@
         android:layout_toRightOf="@id/msg_chat_other_profile"
         android:layout_marginTop="8dp"
         android:layout_below="@id/msg_chat_other_user"
+        android:layout_marginLeft="8dp"
         android:text="안녕하세요 저는 XXX입니다."
         android:textColor="@color/black"
         android:padding="8dp"

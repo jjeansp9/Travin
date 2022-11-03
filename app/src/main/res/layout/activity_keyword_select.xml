@@ -28,6 +28,30 @@
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
+    <Button
+        android:id="@+id/btn_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="계획적"
+        android:textColor="@color/black"
+        android:layout_below="@id/appbar_layout"
+        android:backgroundTint="#FADCDC"
+        android:layout_margin="16dp"
+        />
+
+    <Button
+        android:id="@+id/btn_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="즉흥적"
+        android:textColor="@color/black"
+        android:layout_toRightOf="@id/btn_1"
+        android:layout_below="@id/appbar_layout"
+        android:backgroundTint="#EEF3C5"
+        android:layout_margin="16dp"
+        />
+
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
