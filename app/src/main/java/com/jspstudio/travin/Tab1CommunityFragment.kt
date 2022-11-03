@@ -34,6 +34,7 @@ class Tab1CommunityFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         mBinding = FragmentTab1CommunityBinding.inflate(inflater, container, false)
+
         return binding.root
     }
 
@@ -53,8 +54,27 @@ class Tab1CommunityFragment : Fragment() {
             items4.add(Tab4AccompanyItem("질문이 있습니다. 제가 얼마전에 여행을 다녀왔는데 여행지에 대해 궁금한 것이 생겼습니다", R.drawable.test1, "jinsol", "1시간 전"))
             items5.add(Tab5ReviewItem("질문이 있습니다. 제가 얼마전에 여행을 다녀왔는데 여행지에 대해 궁금한 것이 생겼습니다", R.drawable.test1, "jinsol", "1시간 전"))
         }
-
-
     }
 
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

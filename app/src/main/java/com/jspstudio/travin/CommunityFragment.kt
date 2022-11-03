@@ -1,9 +1,14 @@
 package com.jspstudio.travin
 
+import android.content.DialogInterface
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -17,6 +22,10 @@ class CommunityFragment : Fragment() {
     private val binding get() = mBinding!!
 
     var adapter : CommunityPagerAdapter? = null
+
+    private lateinit var resultText: TextView
+    private lateinit var alertBtn: Button
+    private lateinit var listBtn: Button
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,6 +49,8 @@ class CommunityFragment : Fragment() {
         //탭레이아웃과 뷰페이저 연동해주는 중재자(Mediator)
         val mediator = TabLayoutMediator(binding.tabLayout, binding.pager) { tab, position -> tab.text = tabMenu[position] }
         mediator.attach()
+
+
 
     }
 

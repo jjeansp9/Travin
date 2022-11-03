@@ -43,14 +43,99 @@
         android:id="@+id/btn_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="즉흥적"
-        android:textColor="@color/black"
-        android:layout_toRightOf="@id/btn_1"
         android:layout_below="@id/appbar_layout"
-        android:backgroundTint="#EEF3C5"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_toRightOf="@id/btn_1"
+        android:backgroundTint="#F8E7B4"
+        android:text="즉흥적"
+        android:textColor="@color/black" />
+
+    <Button
+        android:id="@+id/btn_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="모험"
+        android:textColor="@color/black"
+        android:layout_below="@id/appbar_layout"
+        android:layout_toRightOf="@id/btn_2"
+        android:backgroundTint="#D8DEFB"
         android:layout_margin="16dp"
         />
 
+    <Button
+        android:id="@+id/btn_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="휴양"
+        android:textColor="@color/black"
+        android:layout_below="@id/btn_1"
+        android:backgroundTint="#E2D2FF"
+        android:layout_margin="16dp"
+        />
+
+    <Button
+        android:id="@+id/btn_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_1"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_toRightOf="@id/btn_4"
+        android:backgroundTint="#DFEDCE"
+        android:text="쇼핑"
+        android:textColor="@color/black" />
+
+    <Button
+        android:id="@+id/btn_6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="유럽"
+        android:textColor="@color/black"
+        android:layout_below="@id/btn_1"
+        android:layout_toRightOf="@id/btn_5"
+        android:backgroundTint="#FDF8CB"
+        android:layout_margin="16dp"
+        />
+
+    <Button
+        android:id="@+id/btn_7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="아시아"
+        android:textColor="@color/black"
+        android:layout_below="@id/btn_4"
+        android:backgroundTint="#FDD0C2"
+        android:layout_margin="16dp"
+        />
+
+    <Button
+        android:id="@+id/btn_8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="자연"
+        android:textColor="@color/black"
+        android:layout_below="@id/btn_4"
+        android:layout_toRightOf="@+id/btn_7"
+        android:backgroundTint="#D3FAF6"
+        android:layout_margin="16dp"
+        />
+
+    <Button
+        android:id="@+id/btn_9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="도시"
+        android:textColor="@color/black"
+        android:layout_below="@id/btn_4"
+        android:layout_toRightOf="@id/btn_8"
+        android:backgroundTint="#E6FACF"
+        android:layout_margin="16dp"
+        />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
