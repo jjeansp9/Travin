@@ -1,6 +1,5 @@
 package com.jspstudio.travin
 
-import android.annotation.SuppressLint
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -8,7 +7,8 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 class CommunityPagerAdapter(fragmentActivity: FragmentActivity) :
     FragmentStateAdapter(fragmentActivity) {
 
-    var fragments = arrayOfNulls<Fragment>(5)
+    private var fragments = arrayOfNulls<Fragment>(5)
+
 
     override fun createFragment(position: Int): Fragment {
         return fragments[position]!!
@@ -18,6 +18,7 @@ class CommunityPagerAdapter(fragmentActivity: FragmentActivity) :
         return fragments.size
     }
 
+
     init {
         fragments[0] = Tab1CommunityFragment()
         fragments[1] = Tab2QuestionFragment()
@@ -25,4 +26,5 @@ class CommunityPagerAdapter(fragmentActivity: FragmentActivity) :
         fragments[3] = Tab4AccompanyFragment()
         fragments[4] = Tab5ReviewFragment()
     }
+
 }
