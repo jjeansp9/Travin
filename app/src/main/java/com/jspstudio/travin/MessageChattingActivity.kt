@@ -21,11 +21,6 @@ class MessageChattingActivity : AppCompatActivity() {
 
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.bnv_chat, menu) //Todo 앱바 인플레이트해서 센드아이콘 붙이기
-        return super.onCreateOptionsMenu(menu)
-    }
-
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return super.onSupportNavigateUp()

@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="vertical"
-        android:background="#DCDCDC"
+        android:background="#ECECEC"
         app:reverseLayout="true"
         app:stackFromEnd="true"/>
 
