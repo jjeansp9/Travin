@@ -72,8 +72,6 @@
         android:layout_marginTop="8dp"
         android:layout_toEndOf="@id/ic_home_favorite"/>
 
-
-
     <TextView
         android:id="@+id/tv_home_contents"
         android:layout_width="wrap_content"
@@ -82,11 +80,10 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
         android:ellipsize="end"
         android:maxLines="3"
         android:text="오늘 여행다녀온 곳은 프랑스 파리의 에펠탑입니다." />
-
 
 </RelativeLayout>
 
