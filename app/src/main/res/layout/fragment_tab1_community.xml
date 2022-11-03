@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,13 +10,158 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
+            <RelativeLayout
+                android:id="@+id/layout1"
+                android:layout_width="match_parent"
+                android:layout_height="120dp">
+
+                <TextView
+                    android:id="@+id/tv1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="여행스타일이 비슷한 사람들"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_margin="16dp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/tab1_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#ECECEC"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:orientation="horizontal"
+                    app:reverseLayout="true"
+                    app:stackFromEnd="true"
+                    android:layout_below="@id/tv1"/>
+
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/layout2"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_below="@id/layout1">
+
+                <TextView
+                    android:id="@+id/tv2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="여행 질문"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_margin="16dp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/tab2_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#ECECEC"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:reverseLayout="true"
+                    app:stackFromEnd="true"
+                    android:layout_below="@id/tv2"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout3"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_below="@id/layout2">
+
+                <TextView
+                    android:id="@+id/tv3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="여행 꿀팁"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_margin="16dp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/tab3_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:orientation="horizontal"
+                    android:background="#ECECEC"
+                    app:reverseLayout="true"
+                    app:stackFromEnd="true"
+                    android:layout_below="@id/tv3"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout4"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_below="@id/layout3">
+
+                <TextView
+                    android:id="@+id/tv4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="같이 여행할 사람 찾기"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_margin="16dp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/tab4_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:orientation="horizontal"
+                    android:background="#ECECEC"
+                    app:reverseLayout="true"
+                    app:stackFromEnd="true"
+                    android:layout_below="@id/tv4"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout5"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_below="@id/layout4">
+
+                <TextView
+                    android:id="@+id/tv5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="여행 후기"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_margin="16dp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/tab5_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:orientation="horizontal"
+                    android:background="#ECECEC"
+                    app:reverseLayout="true"
+                    app:stackFromEnd="true"
+                    android:layout_below="@id/tv5"/>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
 
     </androidx.core.widget.NestedScrollView>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="tab1" />
-
-</RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
