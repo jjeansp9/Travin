@@ -41,12 +41,13 @@ class Tab1CommunityFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        recycler.adapter = Tab1CommunityRecyclerAdapter(view.context, items)
-        recycler2.adapter = Tab2QuestionRecyclerAdapter(view.context, items2)
-        recycler3.adapter = Tab3UsefulInfoRecyclerAdapter(view.context, items3)
-        recycler4.adapter = Tab4AccompanyRecyclerAdapter(view.context, items4)
-        recycler5.adapter = Tab5ReviewRecyclerAdapter(view.context, items5)
+        viewConnect() // 리사이클러뷰 아답터 연결
+        dummyData() // 테스트용 데이터
 
+    }
+
+    // 테스트용 데이터
+    fun dummyData(){
         for(i in 0..30){ // 제어변수를 만드는 var키워드 없음
             items.add(Tab1CommunityItem(R.drawable.profile))
             items2.add(Tab2QuestionItem("안녕하세요 제가 이번에 가본 여행지에 대해 꿀팁을 전수해드리겠습니다.", R.drawable.sydney, "jinsol", "1시간 전"))
@@ -54,6 +55,14 @@ class Tab1CommunityFragment : Fragment() {
             items4.add(Tab4AccompanyItem("질문이 있습니다. 제가 얼마전에 여행을 다녀왔는데 여행지에 대해 궁금한 것이 생겼습니다", R.drawable.test1, "jinsol", "1시간 전"))
             items5.add(Tab5ReviewItem("질문이 있습니다. 제가 얼마전에 여행을 다녀왔는데 여행지에 대해 궁금한 것이 생겼습니다", R.drawable.test1, "jinsol", "1시간 전"))
         }
+    }
+
+    fun viewConnect(){
+        recycler.adapter = context?.let { Tab1CommunityRecyclerAdapter(it, items) }
+        recycler2.adapter = context?.let { Tab2QuestionRecyclerAdapter(it, items2) }
+        recycler3.adapter = context?.let { Tab3UsefulInfoRecyclerAdapter(it, items3) }
+        recycler4.adapter = context?.let { Tab4AccompanyRecyclerAdapter(it, items4) }
+        recycler5.adapter = context?.let { Tab5ReviewRecyclerAdapter(it, items5) }
     }
 
 

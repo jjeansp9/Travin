@@ -8,6 +8,7 @@
         <entry key="..\:/Android/Projects/Travin/app/src/debug/res/drawable-hdpi/ic_fav_selector.xml" value="0.1655" />
         <entry key="..\:/Android/Projects/Travin/app/src/debug/res/drawable-xxhdpi/bg_edit.xml" value="0.1665" />
         <entry key="..\:/Android/Projects/Travin/app/src/debug/res/drawable-xxhdpi/bg_edit_chat.xml" value="0.1435" />
+        <entry key="..\:/Android/Projects/Travin/app/src/debug/res/drawable-xxhdpi/bg_upload_image.xml" value="0.1395" />
         <entry key="..\:/Android/Projects/Travin/app/src/debug/res/drawable-xxhdpi/line_edit.xml" value="0.1665" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/drawable-anydpi/bg_chat.xml" value="0.121" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/drawable-anydpi/bg_mymessagebox.xml" value="0.124" />
@@ -19,9 +20,11 @@
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/drawable-anydpi/ic_go_back.xml" value="0.138" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/drawable-anydpi/ic_home.xml" value="0.138" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/drawable-anydpi/ic_home_select.xml" value="0.138" />
+        <entry key="..\:/Android/Projects/Travin/app/src/main/res/drawable-anydpi/ic_message.xml" value="0.1395" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/drawable-anydpi/ic_next.xml" value="0.14" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/drawable-anydpi/ic_profile_select.xml" value="0.1405" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/drawable-anydpi/ic_search.xml" value="0.138" />
+        <entry key="..\:/Android/Projects/Travin/app/src/main/res/drawable/ic_upload_image.xml" value="0.1395" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/drawable/kakao_button.xml" value="0.121" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/activity_intro.xml" value="0.30844444444444447" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/activity_keyword_select.xml" value="0.25" />
@@ -30,6 +33,7 @@
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/activity_message_chatting.xml" value="0.22" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/activity_sign_in.xml" value="0.25" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
+        <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/activity_upload.xml" value="0.25" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/activity_upload_community.xml" value="0.25" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/dialog.xml" value="0.31261261261261264" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/fragment_account.xml" value="0.25" />
