@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UploadActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/upload_complete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="완료"
+                android:layout_gravity="right"
+                android:layout_marginRight="16dp"
+                android:textSize="18sp"
+                android:textColor="@color/btn"
+                android:textStyle="bold"/>
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ImageView
+        android:id="@+id/img_upload"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@id/appbar"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_upload_image"
+        android:src="@drawable/ic_upload_image"/>
+
+    <EditText
+        android:id="@+id/et_contents"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/img_upload"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:hint="글 작성"
+        android:padding="8dp"
+        android:background="@drawable/bg_edit"
+        android:gravity="top"
+        android:lines="8"
+        android:maxLines="8"
+        android:maxLength="200"
+        android:inputType="textMultiLine"
+        />
+
+</RelativeLayout>
