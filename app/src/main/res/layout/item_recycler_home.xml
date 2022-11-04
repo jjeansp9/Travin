@@ -53,7 +53,7 @@
         android:scaleType="centerCrop"
         android:src="@drawable/paris" />
 
-    <ImageView
+    <ToggleButton
         android:id="@+id/ic_home_favorite"
         android:layout_width="30dp"
         android:layout_height="30dp"
@@ -61,7 +61,11 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginRight="8dp"
-        android:src="@drawable/ic_favorite" />
+        android:background="@drawable/ic_fav_selector"
+        android:checked="false"
+        android:text=" "
+        android:textOff=" "
+        android:textOn=" "/>
 
     <ImageView
         android:id="@+id/ic_home_comment"

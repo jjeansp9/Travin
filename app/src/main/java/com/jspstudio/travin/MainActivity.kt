@@ -19,12 +19,10 @@ class MainActivity : AppCompatActivity() {
     private var fragments : MutableList<Fragment> = mutableListOf()
     var fragmentManager: FragmentManager? = null
 
-    private var mBinding : ActivityMainBinding? = null
-    private val binding get() = mBinding!!
+    val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         createBNV()
