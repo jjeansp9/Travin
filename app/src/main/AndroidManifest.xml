@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Travin"
         tools:targetApi="31">
         <activity
+            android:name=".UploadCommunityActivity"
+            android:exported="false" />
+        <activity
             android:name=".MessageChattingActivity"
             android:exported="false" />
         <activity

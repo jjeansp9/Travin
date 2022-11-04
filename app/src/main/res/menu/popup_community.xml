@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/menu_question_upload" android:title="여행 질문"/>
+    <item android:id="@+id/menu_useful_info_upload" android:title="여행 꿀팁"/>
+    <item android:id="@+id/menu_accompany_upload" android:title="여행 동행"/>
+    <item android:id="@+id/menu_review_upload" android:title="여행 후기"/>
+
+</menu>
