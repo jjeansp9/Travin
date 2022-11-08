@@ -1,10 +1,9 @@
 package com.jspstudio.travin
 
-import okhttp3.MultipartBody
 import retrofit2.Call
+import retrofit2.http.GET
 import retrofit2.http.Multipart
 import retrofit2.http.POST
-
 import retrofit2.http.PartMap
 
 interface RetrofitSignUpService {
@@ -14,4 +13,7 @@ interface RetrofitSignUpService {
     fun userDataToServer(
         @PartMap userDataPart: MutableMap<String, String>
     ): Call<String?>?
+
+    @GET("Travin/loadUserData.php")
+    open fun loadUserDataFromServer(): Call<ArrayList<UserData?>?>?
 }
