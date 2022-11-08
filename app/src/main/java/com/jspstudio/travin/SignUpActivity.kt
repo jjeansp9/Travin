@@ -83,18 +83,7 @@ class SignUpActivity : AppCompatActivity() {
             }
         })
 
-
-
-
-
-
-
-
-
-
-
-
-    }
+    } // clickBtnSignUp()
 
 
 }
