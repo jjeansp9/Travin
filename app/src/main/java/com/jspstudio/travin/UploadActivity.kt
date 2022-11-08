@@ -64,7 +64,7 @@ class UploadActivity : AppCompatActivity() {
 
 
 
-
+        finish()
     }
 
 

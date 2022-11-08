@@ -59,11 +59,11 @@
         android:id="@+id/btn_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/btn"
-        android:layout_marginTop="110dp"
         android:layout_alignParentRight="true"
+        android:layout_marginTop="110dp"
         android:layout_marginRight="20dp"
-        android:text="중복 확인"/>
+        android:backgroundTint="@color/btn"
+        android:text="중복 확인" />
 
     <TextView
         android:id="@+id/tv_id"
@@ -145,7 +145,7 @@
         android:maxLength="12"/>
 
     <Button
-        android:id="@+id/btn_join"
+        android:id="@+id/btn_sign_up"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -157,6 +157,14 @@
         android:padding="8dp"
         android:text="가입하기"
         android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_password_confirm"
+        android:text="s"
+        android:padding="16dp"/>
 
 
 </RelativeLayout>

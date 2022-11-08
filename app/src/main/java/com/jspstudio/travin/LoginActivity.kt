@@ -13,16 +13,11 @@ class LoginActivity : AppCompatActivity() {
 
     lateinit var btn: Button
 
-    // 전역 변수로 바인딩 객체 선언
-    private var mBinding: ActivityLoginBinding? = null
-    // 매번 null 체크를 할 필요 없이 편의성을 위해 바인딩 변수 재 선언
-    private val binding get() = mBinding!!
+    val binding: ActivityLoginBinding by lazy { ActivityLoginBinding.inflate(layoutInflater) }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        mBinding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // 클릭시 회원가입 화면으로 이동
