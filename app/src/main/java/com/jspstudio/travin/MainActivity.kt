@@ -11,10 +11,10 @@ import com.jspstudio.travin.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
+    // 프래그먼트 생성했는지 여부 ( 생성했을 시 true로 설정. true인 경우 더이상 프래그먼트 생성 불가능 )
     var com : Boolean = false
     var msg : Boolean = false
     var pro : Boolean = false
-    var frags : MutableList<Boolean>? = null
 
     private var fragments : MutableList<Fragment> = mutableListOf()
     var fragmentManager: FragmentManager? = null
