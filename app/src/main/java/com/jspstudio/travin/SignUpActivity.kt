@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.FirebaseFirestore
 import com.jspstudio.travin.databinding.ActivitySignUpBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -49,7 +51,7 @@ class SignUpActivity : AppCompatActivity() {
     // 회원가입 버튼
     private fun clickBtnSignUp(){
 
-        // 전송할 데이터들 [ name, title, message, price, imaPath ] 5개
+        // 레트로핏 라이브러리를 이용하여 회원정보 저장
         val nickname: String = binding.etName.text.toString() // 닉네임
         val id: String = binding.etId.text.toString() // 아이디
         val password: String = binding.etPassword.text.toString() // 비밀번호
@@ -82,6 +84,25 @@ class SignUpActivity : AppCompatActivity() {
                 Toast.makeText(this@SignUpActivity, "error : " + t.message, Toast.LENGTH_SHORT).show()
             }
         })
+
+
+        // 파이어베이스를 이용하여 회원정보 저장
+        UserDatas.nickname= binding.etName.text.toString()
+        UserDatas.id= binding.etId.text.toString()
+        UserDatas.password= binding.etPassword.text.toString()
+
+        // firebase db에 저장하기 위해 Map Collection으로 묶어서 저장
+        val firebaseFirestore = FirebaseFirestore.getInstance()
+
+        val userRef: CollectionReference = firebaseFirestore.collection("users")
+
+        // Document 명을 닉네임으로, Field'값'에 이미지경로 url을 저장
+        val profile: MutableMap<String, String> = java.util.HashMap()
+        profile["id"] = UserDatas.id!!
+        profile["password"] = UserDatas.password!!
+
+        val fileName : String = UserDatas.nickname!!
+        userRef.document(fileName).set(profile)
 
     } // clickBtnSignUp()
 

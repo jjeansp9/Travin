@@ -78,4 +78,6 @@ class KeywordSelectActivity : AppCompatActivity() {
         return result
     }
 
+
+
 }

@@ -38,7 +38,7 @@ class SignInActivity : AppCompatActivity() {
     fun clickSignIn(){
 
 
-        saveUserData()
+        loadData()
 
 
 
@@ -70,32 +70,55 @@ class SignInActivity : AppCompatActivity() {
 
     } // clickSignIn()
 
-    // 데이터 저장 메소드
-    fun saveUserData(){
+    // 회원 아이디,비밀번호 데이터 불러오기
+    fun loadData(){
         UserDatas.id= binding.etId.text.toString()
+        UserDatas.password= binding.etPassword.text.toString()
 
-        // 아이디 입력칸이 공백이거나 입력하지 않았다면 실행X
-        if(UserDatas.id!!.replace(" ", "") == ""){
-            Toast.makeText(this, "아이디를 입력해 주세요", Toast.LENGTH_SHORT).show()
-        }else{
-            // firebase db에 저장하기 위해 Map Collection으로 묶어서 저장
-            val firebaseFirestore = FirebaseFirestore.getInstance()
+        // FireStore DB 데이터들 가져오기
+        val firebaseFirestore = FirebaseFirestore.getInstance()
+        val userRef = firebaseFirestore.collection("users")
 
-            val userRef: CollectionReference = firebaseFirestore.collection("users")
+        // firestore DB 아이디,비밀번호가 맞지않으면 로그인 실패
+        userRef.get().addOnCompleteListener { task ->
+            val snapshots = task.result
+            val bufferId = StringBuffer()
+            val bufferPw = StringBuffer()
+            for (snapshot in snapshots) {
+                val user = snapshot.data
+                val id = user["id"].toString()
+                val password = user["password"].toString()
+                bufferId.append("$id")
+                bufferPw.append("$password")
+                if(UserDatas.id!!.replace(" ", "") == ""){
 
-            // Document 명을 닉네임으로, Field'값'에 이미지경로 url을 저장
-            val profile: MutableMap<String, String> = HashMap()
-            profile["profile"] = UserDatas.id!!
+                    Toast.makeText(this, "아이디를 입력해 주세요", Toast.LENGTH_SHORT).show()
+                    break
+                }else if(bufferId.toString() != UserDatas.id || bufferPw.toString() != UserDatas.password){
 
-            userRef.document(UserDatas.id!!).set(profile)
+                }else if (bufferId.toString() == UserDatas.id && bufferPw.toString() == UserDatas.password){
 
-            startActivity(Intent(this, KeywordSelectActivity::class.java))
-            finish()
+
+
+                    // 앱을 처음 실행할때 한번 입력한 닉네임,사진을 폰에 저장 (다시 입력하지 않기위해)
+                    // 2. SharedPreferences 에 저장
+                    val pref = getSharedPreferences("account", MODE_PRIVATE)
+                    val editor = pref.edit()
+                    editor.putString("nickname", UserDatas.id)
+
+                    editor.commit()
+
+                    startActivity(Intent(this, KeywordSelectActivity::class.java))
+                    finish()
+                    break
+                }
+                binding.tv.text = bufferId.toString() + bufferPw.toString()
+            }
+
         }
 
-
-
     }
+
 }
 
 
