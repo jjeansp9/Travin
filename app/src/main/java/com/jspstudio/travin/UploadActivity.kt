@@ -9,11 +9,14 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.loader.content.CursorLoader
 import com.bumptech.glide.Glide
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.FirebaseFirestore
 import com.jspstudio.travin.databinding.ActivityUploadBinding
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.File
+import java.util.HashMap
 
 // 글 업로드 화면
 class UploadActivity : AppCompatActivity() {
@@ -62,8 +65,16 @@ class UploadActivity : AppCompatActivity() {
 
         val contents:String = binding.etContents.text.toString() // 글 내용
 
+        val firebaseFirestore = FirebaseFirestore.getInstance()
 
+        val userRef: CollectionReference = firebaseFirestore.collection("users")
 
+        // Document 명을 닉네임으로, Field'값'에 이미지경로 url을 저장
+        val profile: MutableMap<String, String> = HashMap()
+        profile["id"] = UserDatas.id!!
+
+        val fileName : String = UserDatas.id!!
+        userRef.document(fileName).set(profile)
         finish()
     }
 
