@@ -14,6 +14,6 @@ interface RetrofitSignUpService {
         @PartMap userDataPart: MutableMap<String, String>
     ): Call<String?>?
 
-    @GET("Travin/loadUserData.php")
+    @POST("Travin/loadUserData.php")
     open fun loadUserDataFromServer(): Call<ArrayList<UserData?>?>?
 }

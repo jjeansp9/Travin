@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "437300079921",
+    "project_id": "travinproject",
+    "storage_bucket": "travinproject.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:437300079921:android:30a76b72f68522565b9410",
+        "android_client_info": {
+          "package_name": "com.jspstudio.travin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "437300079921-tik4ah43kjsiv2mnc6r8r0nefv1k69ot.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDoUVMsYKovel6vjr0HW186q5_-6VJiSgk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "437300079921-tik4ah43kjsiv2mnc6r8r0nefv1k69ot.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

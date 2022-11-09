@@ -98,9 +98,8 @@
             android:id="@+id/tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="s"
             android:padding="16dp"
-            />
+            android:text="s" />
 
     </androidx.core.widget.NestedScrollView>
 

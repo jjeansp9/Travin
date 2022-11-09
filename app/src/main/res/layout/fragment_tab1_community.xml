@@ -33,12 +33,12 @@
                     android:id="@+id/tab1_recycler"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_below="@id/tv1"
                     android:background="#ECECEC"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:reverseLayout="true"
-                    app:stackFromEnd="true"
-                    android:layout_below="@id/tv1"/>
+                    app:stackFromEnd="true" />
 
 
             </RelativeLayout>
