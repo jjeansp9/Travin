@@ -41,7 +41,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/bg_upload_image"
-        android:src="@drawable/ic_upload_image"/>
+        android:src="@drawable/ic_upload_image" />
 
     <EditText
         android:id="@+id/et_contents"

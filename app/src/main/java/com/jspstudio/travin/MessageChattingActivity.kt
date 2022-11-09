@@ -3,16 +3,15 @@ package com.jspstudio.travin
 import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
+import com.jspstudio.travin.databinding.ActivityMainBinding
 import com.jspstudio.travin.databinding.ActivityMessageChattingBinding
 
 class MessageChattingActivity : AppCompatActivity() {
 
-    private var mBinding : ActivityMessageChattingBinding? = null
-    private val binding get() = mBinding!!
+    val binding: ActivityMessageChattingBinding by lazy { ActivityMessageChattingBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mBinding = ActivityMessageChattingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // 액션바에 뒤로가기 버튼

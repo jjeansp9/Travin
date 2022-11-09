@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    // Add the Google services Gradle plugin
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -57,6 +59,12 @@ dependencies {
     // 이미지를 원모양으로 만들기위한 라이브러리
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
+    // Firebase Core Platform SDK 라이브러리
+    implementation platform('com.google.firebase:firebase-bom:31.0.0')
+
+    // 각 제품별 라이브러리 추가
+    implementation 'com.google.firebase:firebase-storage' // firebase Cloud storage - 저장소
+    implementation 'com.google.firebase:firebase-firestore' // firebase Cloud firestore - 데이터베이스
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
