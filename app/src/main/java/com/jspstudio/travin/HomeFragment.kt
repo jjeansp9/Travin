@@ -6,13 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.google.firebase.firestore.DocumentChange
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FirebaseFirestore
 import com.jspstudio.travin.databinding.FragmentHomeBinding
+import java.util.*
 
 class HomeFragment : Fragment() {
 
-    private var mBinding: FragmentHomeBinding? = null
-    // 매번 null 체크를 할 필요 없이 편의성을 위해 바인딩 변수 재 선언
-    private val binding get() = mBinding!!
+    lateinit var binding:FragmentHomeBinding
 
     var popularItems: MutableList<HomePopularItem> = mutableListOf() // 오늘의 인기글 데이터
     var items: MutableList<HomeItem> = mutableListOf() // 홈화면 업로드한 글 데이터
@@ -22,8 +24,7 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        mBinding = FragmentHomeBinding.inflate(inflater, container, false)
-
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -37,6 +38,11 @@ class HomeFragment : Fragment() {
 
         // 플로팅버튼 클릭하면 새 게시물 업로드화면 열림
         binding.fabHomeAddWrite.setOnClickListener { clickFabTabMenu(0) }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        loadDataFromHomeUpload()
 
     }
 
@@ -49,19 +55,76 @@ class HomeFragment : Fragment() {
     // 리사이클러뷰 테스트목적 더미데이터
     fun dummyData(){
         for(i in 0..20) popularItems.add(HomePopularItem(R.drawable.newyork))
+    }
 
 
-        for(i in 0..20){
-            items.add(HomeItem(R.drawable.ic_profile,
-                "홍길동",
-                "서울특별시 서초구",
-                "1시간 전",
-                R.drawable.paris,
-                R.drawable.ic_favorite,
-                R.drawable.ic_comment,
-                "안녕하세요 이번에 가본 곳은 프랑스 파리입니다. 에펠탑이 보이는 것이 정말 아름답네요. 다음에 또 오고 싶은 곳입니다."))
+
+    fun loadDataFromHomeUpload(){
+        val firebaseFirestore = FirebaseFirestore.getInstance() // 파이어스토어 생성
+        val homeUploadRef = firebaseFirestore.collection("homeUploads") // firestore에 있는 homeUploads 라는 이름의 컬렉션을 참조
+
+        homeUploadRef.addSnapshotListener { value, error ->
+            val documentChangeList : List<DocumentChange> = value!!.documentChanges
+            for (documentChange : DocumentChange in documentChangeList){
+                // 변경된 document의 데이터를 촬영한 스냅샷 얻어오기
+                val snapshot : DocumentSnapshot = documentChange.document
+
+                // document 안에 있는 필드 값들 얻어오기
+                val homeUpload : Map<String, String> = snapshot.data as Map<String, String>
+                val nickName = homeUpload["homeUploadNickname"]
+                val uploadImg = homeUpload["homeUploadImgUrl"]
+                val uploadContents = homeUpload["homeUploadContents"]
+                val uploadTime = homeUpload["homeUploadTime"]
+
+                val item : HomeItem = HomeItem(R.drawable.ic_profile,
+                    nickName,
+                    "서울특별시 서초구",
+                    uploadTime,
+                    uploadImg,
+                    R.drawable.ic_favorite,
+                    R.drawable.ic_comment,
+                    uploadContents)
+                items.add(item)
+
+                // 리사이클러뷰 갱신
+                binding.homeRecycler.adapter?.notifyItemInserted(items.size -1)
+                binding.homeRecycler.scrollToPosition(binding.homeRecycler.adapter!!.itemCount -1)
+
+
+
+            }
         }
 
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

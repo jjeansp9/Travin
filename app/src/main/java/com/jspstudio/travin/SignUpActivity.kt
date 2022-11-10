@@ -11,6 +11,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.HashMap
 
 // 회원가입 화면 //
 
@@ -94,15 +97,27 @@ class SignUpActivity : AppCompatActivity() {
         // firebase db에 저장하기 위해 Map Collection으로 묶어서 저장
         val firebaseFirestore = FirebaseFirestore.getInstance()
 
-        val userRef: CollectionReference = firebaseFirestore.collection("users")
+        val userRef: CollectionReference = firebaseFirestore.collection("users") // 컬렉션명 : users
 
         // Document 명을 닉네임으로, Field'값'에 이미지경로 url을 저장
-        val profile: MutableMap<String, String> = java.util.HashMap()
+        val profile: MutableMap<String, String> = HashMap()
+        profile["nickname"] = UserDatas.nickname!!
         profile["id"] = UserDatas.id!!
         profile["password"] = UserDatas.password!!
 
-        val fileName : String = UserDatas.nickname!!
+        val sdf: SimpleDateFormat = SimpleDateFormat("yyyyMMddHHmmSS")
+        val fileName:String = sdf.format(Date()) + "_" + UserDatas.id + ".png" // 저장될 파일명 : 날짜 + 아이디 + .png
         userRef.document(fileName).set(profile)
+
+        // 앱을 처음 실행할때 한번 입력한 회원정보를 폰에 저장 (다시 입력하지 않기위해)
+        // 2. SharedPreferences 에 저장
+        val pref = getSharedPreferences("account", MODE_PRIVATE)
+        val editor = pref.edit()
+        editor.putString("id", UserDatas.id)
+        editor.putString("nickname", UserDatas.nickname)
+        editor.putString("password", UserDatas.password)
+
+        editor.commit()
 
     } // clickBtnSignUp()
 

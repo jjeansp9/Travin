@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.jspstudio.travin.databinding.ItemRecyclerHomeBinding
 
 class HomeRecyclerAdapter constructor(val context: Context, var homeItems:MutableList<HomeItem>):RecyclerView.Adapter<HomeRecyclerAdapter.VH>(){
@@ -31,8 +32,17 @@ class HomeRecyclerAdapter constructor(val context: Context, var homeItems:Mutabl
         Glide.with(context).load(homeItems[position].homeProfile).into(holder.binding.ivHomeProfile) // 글 작성자 프로필
         Glide.with(context).load(homeItems[position].homePicture).into(holder.binding.ivHomePicture) // 글 작성자가 업로드한 사진
         Glide.with(context).load(homeItems[position].homeComment).into(holder.binding.icHomeComment) // 댓글달기 버튼
+
+        holder.binding.icHomeComment.setOnClickListener{
+
+            val bottomSheetDialog = BottomSheetDialog(context)
+            bottomSheetDialog.setContentView(R.layout.bs_comment)
+            bottomSheetDialog.show()
+        }
+
     }
 
     override fun getItemCount(): Int = homeItems.size
+
 
 }
