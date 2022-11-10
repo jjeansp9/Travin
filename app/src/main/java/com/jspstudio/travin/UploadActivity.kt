@@ -4,24 +4,28 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.loader.content.CursorLoader
+
 import com.bumptech.glide.Glide
-import com.google.firebase.firestore.CollectionReference
+
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import com.jspstudio.travin.databinding.ActivityUploadBinding
-import okhttp3.MediaType
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
-import java.io.File
-import java.util.HashMap
+
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.HashMap
 
 // 글 업로드 화면
 class UploadActivity : AppCompatActivity() {
 
     val binding: ActivityUploadBinding by lazy { ActivityUploadBinding.inflate(layoutInflater) }
+
+    lateinit var imgUri:Uri
 
     var tabNum:Int? = null
     val tabMenu = arrayOf("새 게시물", "여행 질문", "여행 꿀팁", "여행 동행", "여행 후기 ")
@@ -33,6 +37,8 @@ class UploadActivity : AppCompatActivity() {
         uploadName() // 액션바에 탭이름 표시하는 메소드
         binding.imgUpload.setOnClickListener { clickImageSelect() } // 사진 클릭시 사진선택화면 이동 및 선택
         binding.uploadComplete.setOnClickListener { clickUploadComplete() } // 완료 클릭시 글작성 완료되어 업로드됨
+
+
     }
 
     // 제목줄의 뒤로가기버튼(업버튼)을 클릭했을 때 자동실행되는 콜백메소드
@@ -63,19 +69,52 @@ class UploadActivity : AppCompatActivity() {
     // 글작성 완료(업로드) 메소드
     fun clickUploadComplete(){
 
-        val contents:String = binding.etContents.text.toString() // 글 내용
+        val pref = getSharedPreferences("account", MODE_PRIVATE)
+        UserDatas.nickname = pref.getString("nickname", null)
 
-        val firebaseFirestore = FirebaseFirestore.getInstance()
+        UploadDatas.uploadContents= binding.etContents.text.toString() // 홈화면 업로드글 내용
 
-        val userRef: CollectionReference = firebaseFirestore.collection("users")
+        val sdf:SimpleDateFormat = SimpleDateFormat("yyyyMMddHHmmss")
+        val fileName:String = sdf.format(Date()) + "_" + UserDatas.nickname + ".png" // 저장될 파일명 : 닉네임 + 날짜 + .png
 
-        // Document 명을 닉네임으로, Field'값'에 이미지경로 url을 저장
-        val profile: MutableMap<String, String> = HashMap()
-        profile["id"] = UserDatas.id!!
+        val firebaseStorage = FirebaseStorage.getInstance()
+        val uploadRef: StorageReference = firebaseStorage.getReference("homeUpload/$fileName") // 컬렉션이름 : homeUpload
 
-        val fileName : String = UserDatas.id!!
-        userRef.document(fileName).set(profile)
+        uploadRef.putFile(imgUri).addOnSuccessListener {
+            uploadRef.downloadUrl.addOnSuccessListener {
+                UploadDatas.uploadImg = it.toString()
+
+                val firebaseFireStore: FirebaseFirestore = FirebaseFirestore.getInstance()
+                val homeUploadRef = firebaseFireStore.collection("homeUploads") // 컬렉션 생성 : homeUploads
+
+                val calendar : Calendar = Calendar.getInstance() // 현재시간 객체
+                val timeHour: String = calendar[Calendar.HOUR_OF_DAY].toString()
+                val timeMinute: String = calendar[Calendar.MINUTE].toString()
+                val timeSecond: String = calendar[Calendar.SECOND].toString()
+
+                val homeUpload : MutableMap<String, String> = HashMap()
+                homeUpload["homeUploadNickname"] = UserDatas.nickname!! // "필드명" = 업로드한 유저닉네임
+                homeUpload["homeUploadImgUrl"] = UploadDatas.uploadImg!! // "필드명" = 업로드 이미지
+                homeUpload["homeUploadContents"] = UploadDatas.uploadContents!! // "필드명" = 업로드 내용
+                homeUpload["homeUploadTime"] = "$timeHour:$timeMinute:$timeSecond" // "필드명" = 업로드 타임
+                homeUpload["homeUploadHour"] = timeHour // "필드명" = 업로드 시간
+                homeUpload["homeUploadMinute"] = timeMinute // "필드명" = 업로드 분
+                homeUpload["homeUploadSecond"] = timeSecond // "필드명" = 업로드 초
+
+                homeUploadRef.document( sdf.format(Date()) + "_" + UserDatas.nickname!! ).set(homeUpload) // 파일명 : 날짜 + 닉네임
+                Toast.makeText(this, "업로드 성공", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        if(supportActionBar?.title == "새 게시물"){
+            Toast.makeText(this, ""+supportActionBar?.title, Toast.LENGTH_SHORT).show()
+        }
+
         finish()
+    }
+
+    fun homeUpload(){
+
     }
 
 
@@ -84,26 +123,11 @@ class UploadActivity : AppCompatActivity() {
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
         if (result.resultCode != RESULT_CANCELED) {
-            val uri = result.data!!.data
-            Glide.with(this@UploadActivity).load(uri).into(binding.imgUpload)
-            // uri --> 절대주소로 변환하기 [ 단, 외부저장소에 대한 퍼미션 필요 ]
-            val imgPath = getRealPathFromUri(uri)
+            imgUri = result.data!!.data!!
+            Glide.with(this@UploadActivity).load(imgUri).into(binding.imgUpload)
         }
     }
 
-    //Uri -- > 절대경로로 바꿔서 리턴시켜주는 메소드
-    fun getRealPathFromUri(uri: Uri?): String? {
-        val proj = arrayOf(MediaStore.Images.Media.DATA)
-        val loader = CursorLoader(
-            this,
-            uri!!, proj, null, null, null
-        )
-        val cursor = loader.loadInBackground()
-        val column_index = cursor!!.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-        cursor.moveToFirst()
-        val result = cursor.getString(column_index)
-        cursor.close()
-        return result
-    }
+
 
 }

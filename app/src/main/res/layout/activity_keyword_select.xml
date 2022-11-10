@@ -139,19 +139,6 @@
         android:text="도시"
         android:textColor="@color/black" />
 
-    <ImageView
-        android:id="@+id/img_profile"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_below="@id/btn_9"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/bg_upload_image"
-        android:src="@drawable/ic_upload_image" />
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
