@@ -16,13 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="User"
-                android:textSize="22sp"
-                android:textColor="@color/black"
-                android:textStyle="bold"/>
+
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -32,8 +26,10 @@
         android:id="@+id/msg_chat_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/appbar_layout"
-        android:layout_above="@id/layout_msg_chat"/>
+        android:layout_above="@id/layout_msg_chat"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="vertical"
+        android:layout_below="@id/appbar_layout" />
 
     <LinearLayout
         android:id="@+id/layout_msg_chat"

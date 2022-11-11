@@ -1,6 +1,7 @@
 package com.jspstudio.travin
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -24,13 +25,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
         createBNV()
     }
 
     // BNV 생성함수
     fun createBNV(){
 
+        if (fragments.size >= 4){
+            fragments.clear()
+        }
         fragments.add(0,HomeFragment()) // 처음에 보여질 fragment 추가
         for(i in 1..3) fragments.add(i, Fragment())
 

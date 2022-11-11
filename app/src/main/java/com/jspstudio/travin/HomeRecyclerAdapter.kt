@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -38,6 +39,7 @@ class HomeRecyclerAdapter constructor(val context: Context, var homeItems:Mutabl
             val bottomSheetDialog = BottomSheetDialog(context)
             bottomSheetDialog.setContentView(R.layout.bs_comment)
             bottomSheetDialog.show()
+
         }
 
     }

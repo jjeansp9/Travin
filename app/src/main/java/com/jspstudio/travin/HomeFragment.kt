@@ -34,8 +34,6 @@ class HomeFragment : Fragment() {
         binding.homePopularRecycler.adapter = HomePopularRecyclerAdapter(view.context, popularItems) // 홈화면 오늘의 인기글 어댑터연결
         binding.homeRecycler.adapter = HomeRecyclerAdapter(view.context,items) // 홈화면 업로드 글 어댑터 연결
 
-        dummyData() // 리사이클러뷰 테스트용 데이터
-
         // 플로팅버튼 클릭하면 새 게시물 업로드화면 열림
         binding.fabHomeAddWrite.setOnClickListener { clickFabTabMenu(0) }
     }
@@ -51,12 +49,6 @@ class HomeFragment : Fragment() {
         intent.putExtra("tabNumber", category)
         startActivity(intent)
     }
-
-    // 리사이클러뷰 테스트목적 더미데이터
-    fun dummyData(){
-        for(i in 0..20) popularItems.add(HomePopularItem(R.drawable.newyork))
-    }
-
 
 
     fun loadDataFromHomeUpload(){
@@ -76,6 +68,7 @@ class HomeFragment : Fragment() {
                 val uploadContents = homeUpload["homeUploadContents"]
                 val uploadTime = homeUpload["homeUploadTime"]
 
+                // 홈 업로드 글 데이터 추가
                 val item : HomeItem = HomeItem(R.drawable.ic_profile,
                     nickName,
                     "서울특별시 서초구",
@@ -84,9 +77,17 @@ class HomeFragment : Fragment() {
                     R.drawable.ic_favorite,
                     R.drawable.ic_comment,
                     uploadContents)
-                items.add(item)
 
-                // 리사이클러뷰 갱신
+                // 홈 오늘의 인기글 데이터추가
+                val popularItem : HomePopularItem = HomePopularItem(uploadImg)
+
+                items.add(item)
+                popularItems.add(popularItem)
+
+                // 오늘의인기글 홈 리사이클러뷰 갱신
+                binding.homePopularRecycler.adapter?.notifyItemInserted(popularItems.size -1)
+
+                // 홈 리사이클러뷰 갱신
                 binding.homeRecycler.adapter?.notifyItemInserted(items.size -1)
                 binding.homeRecycler.scrollToPosition(binding.homeRecycler.adapter!!.itemCount -1)
 

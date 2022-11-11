@@ -7,4 +7,5 @@ object UploadDatas {
             : String? = null
     var uploadTime
             : String? = null
+
 }
