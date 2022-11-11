@@ -6,11 +6,16 @@ data class UserData (
     var password:String
     )
 
-object UserDatas {
-    var id
-            : String? = null
-    var password
-            : String? = null
-    var nickname
-            : String? = null
+
+
+class UserDatas {
+    companion object {
+        var id
+                : String? = null
+        var password
+                : String? = null
+        var nickname
+                : String? = null
+        var profileUrl : String? = null
+    }
 }

@@ -48,6 +48,7 @@ class CommunityFragment : Fragment() {
         binding.fabCommunityAddWrite.setOnClickListener{
             val popupMenu:PopupMenu = PopupMenu(view?.context, binding.fabCommunityAddWrite)
             MenuInflater(view?.context).inflate(R.menu.popup_community, popupMenu.menu)
+
             popupMenu.setOnMenuItemClickListener {
 
                 when(it.itemId){

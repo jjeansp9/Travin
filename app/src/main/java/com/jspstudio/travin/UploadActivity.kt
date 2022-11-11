@@ -69,6 +69,22 @@ class UploadActivity : AppCompatActivity() {
     // 글작성 완료(업로드) 메소드
     fun clickUploadComplete(){
 
+        if(supportActionBar?.title == "새 게시물"){
+            homeUpload() // 홈화면 업로드 메소드
+        }else if (supportActionBar?.title == "여행 질문"){
+            questionUpload() // 여행질문 글 업로드 메소드
+        }else if (supportActionBar?.title == "여행 꿀팁"){
+            usefulInfoUpload() // 여행꿀팁 글 업로드 메소드
+        }else if (supportActionBar?.title == "여행 동행"){
+            accompanyUpload() // 여행동행 글 업로드 메소드
+        }else if(supportActionBar?.title == "여행 후기"){
+            reviewUpload() // 여행후기 글 업로드 메소드
+        }
+        finish()
+    }
+
+    fun homeUpload(){
+
         val pref = getSharedPreferences("account", MODE_PRIVATE)
         UserDatas.nickname = pref.getString("nickname", null)
 
@@ -77,14 +93,14 @@ class UploadActivity : AppCompatActivity() {
         val sdf:SimpleDateFormat = SimpleDateFormat("yyyyMMddHHmmss")
         val fileName:String = sdf.format(Date()) + "_" + UserDatas.nickname + ".png" // 저장될 파일명 : 닉네임 + 날짜 + .png
 
-        val firebaseStorage = FirebaseStorage.getInstance()
+        val firebaseStorage = FirebaseStorage.getInstance() // storage
         val uploadRef: StorageReference = firebaseStorage.getReference("homeUpload/$fileName") // 컬렉션이름 : homeUpload
 
         uploadRef.putFile(imgUri).addOnSuccessListener {
             uploadRef.downloadUrl.addOnSuccessListener {
                 UploadDatas.uploadImg = it.toString()
 
-                val firebaseFireStore: FirebaseFirestore = FirebaseFirestore.getInstance()
+                val firebaseFireStore: FirebaseFirestore = FirebaseFirestore.getInstance() // firestore
                 val homeUploadRef = firebaseFireStore.collection("homeUploads") // 컬렉션 생성 : homeUploads
 
                 val calendar : Calendar = Calendar.getInstance() // 현재시간 객체
@@ -105,15 +121,91 @@ class UploadActivity : AppCompatActivity() {
                 Toast.makeText(this, "업로드 성공", Toast.LENGTH_SHORT).show()
             }
         }
-
-        if(supportActionBar?.title == "새 게시물"){
-            Toast.makeText(this, ""+supportActionBar?.title, Toast.LENGTH_SHORT).show()
-        }
-
-        finish()
     }
 
-    fun homeUpload(){
+    fun questionUpload(){
+        val pref = getSharedPreferences("account", MODE_PRIVATE)
+        UserDatas.nickname = pref.getString("nickname", null)
+
+        UploadDatas.uploadContents= binding.etContents.text.toString() // 홈화면 업로드글 내용
+
+        val sdf:SimpleDateFormat = SimpleDateFormat("yyyyMMddHHmmss")
+        val fileName:String = sdf.format(Date()) + "_" + UserDatas.nickname + ".png" // 저장될 파일명 : 닉네임 + 날짜 + .png
+
+        val firebaseStorage = FirebaseStorage.getInstance() // storage
+        val uploadRef: StorageReference = firebaseStorage.getReference("questionUpload/$fileName") // 컬렉션이름 : questionUpload
+
+        uploadRef.putFile(imgUri).addOnSuccessListener {
+            uploadRef.downloadUrl.addOnSuccessListener {
+                UploadDatas.uploadImg = it.toString()
+
+                val firebaseFireStore: FirebaseFirestore = FirebaseFirestore.getInstance() // firestore
+                val uploadRef = firebaseFireStore.collection("questionUploads") // 컬렉션 생성 : questionUploads
+
+                val calendar : Calendar = Calendar.getInstance() // 현재시간 객체
+                val timeHour: String = calendar[Calendar.HOUR_OF_DAY].toString()
+                val timeMinute: String = calendar[Calendar.MINUTE].toString()
+                val timeSecond: String = calendar[Calendar.SECOND].toString()
+
+                val upload : MutableMap<String, String> = HashMap()
+                upload["questionUploadNickname"] = UserDatas.nickname!! // "필드명" = 업로드한 유저닉네임
+                upload["questionUploadImgUrl"] = UploadDatas.uploadImg!! // "필드명" = 업로드 이미지
+                upload["questionUploadContents"] = UploadDatas.uploadContents!! // "필드명" = 업로드 내용
+                upload["questionUploadTime"] = "$timeHour:$timeMinute:$timeSecond" // "필드명" = 업로드 타임
+                upload["questionUploadHour"] = timeHour // "필드명" = 업로드 시간
+                upload["questionUploadMinute"] = timeMinute // "필드명" = 업로드 분
+                upload["questionUploadSecond"] = timeSecond // "필드명" = 업로드 초
+
+                uploadRef.document( sdf.format(Date()) + "_" + UserDatas.nickname!! ).set(upload) // 파일명 : 날짜 + 닉네임
+                Toast.makeText(this, "업로드 성공", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    fun usefulInfoUpload(){
+        val pref = getSharedPreferences("account", MODE_PRIVATE)
+        UserDatas.nickname = pref.getString("nickname", null)
+
+        UploadDatas.uploadContents= binding.etContents.text.toString() // 홈화면 업로드글 내용
+
+        val sdf:SimpleDateFormat = SimpleDateFormat("yyyyMMddHHmmss")
+        val fileName:String = sdf.format(Date()) + "_" + UserDatas.nickname + ".png" // 저장될 파일명 : 닉네임 + 날짜 + .png
+
+        val firebaseStorage = FirebaseStorage.getInstance() // storage
+        val uploadRef: StorageReference = firebaseStorage.getReference("questionUpload/$fileName") // 컬렉션이름 : questionUpload
+
+        uploadRef.putFile(imgUri).addOnSuccessListener {
+            uploadRef.downloadUrl.addOnSuccessListener {
+                UploadDatas.uploadImg = it.toString()
+
+                val firebaseFireStore: FirebaseFirestore = FirebaseFirestore.getInstance() // firestore
+                val uploadRef = firebaseFireStore.collection("usefulInfoUploads") // 컬렉션 생성 : questionUploads
+
+                val calendar : Calendar = Calendar.getInstance() // 현재시간 객체
+                val timeHour: String = calendar[Calendar.HOUR_OF_DAY].toString()
+                val timeMinute: String = calendar[Calendar.MINUTE].toString()
+                val timeSecond: String = calendar[Calendar.SECOND].toString()
+
+                val upload : MutableMap<String, String> = HashMap()
+                upload["usefulInfoUploadNickname"] = UserDatas.nickname!! // "필드명" = 업로드한 유저닉네임
+                upload["usefulInfoUploadImgUrl"] = UploadDatas.uploadImg!! // "필드명" = 업로드 이미지
+                upload["usefulInfoUploadContents"] = UploadDatas.uploadContents!! // "필드명" = 업로드 내용
+                upload["usefulInfoUploadTime"] = "$timeHour:$timeMinute:$timeSecond" // "필드명" = 업로드 타임
+                upload["usefulInfoUploadHour"] = timeHour // "필드명" = 업로드 시간
+                upload["usefulInfoUploadMinute"] = timeMinute // "필드명" = 업로드 분
+                upload["usefulInfoUploadSecond"] = timeSecond // "필드명" = 업로드 초
+
+                uploadRef.document( sdf.format(Date()) + "_" + UserDatas.nickname!! ).set(upload) // 파일명 : 날짜 + 닉네임
+                Toast.makeText(this, "업로드 성공", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    fun accompanyUpload(){
+
+    }
+
+    fun reviewUpload(){
 
     }
 

@@ -124,6 +124,7 @@ class SignInActivity : AppCompatActivity() {
         val pref = getSharedPreferences("account", MODE_PRIVATE)
         UserDatas.id = pref.getString("id", null)
         UserDatas.password = pref.getString("password", null)
+        UserDatas.nickname = pref.getString("nickname", null)
 
         binding.etId.setText(UserDatas.id)
         binding.etPassword.setText(UserDatas.password)

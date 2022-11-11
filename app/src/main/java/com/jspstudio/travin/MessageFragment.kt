@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.FirebaseFirestore
 import com.jspstudio.travin.databinding.FragmentMessageBinding
 
 class MessageFragment : Fragment() {
@@ -34,24 +35,20 @@ class MessageFragment : Fragment() {
 
         recycler.adapter = MessageRecyclerAdapter(view.context, items)
 
-        for(i in 0..20){ // 제어변수를 만드는 var키워드 없음
-            items.add(MessageRecyclerItem(R.drawable.ic_profile, "홍길동", "안녕하세요 홍길동입니다.dddddddddddddddddddddddddddddddddd", "오후 8:55"))
-        }
+        binding.btnTest.setOnClickListener { clickTest() }
 
+        dataTest()
 
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        binding.btnTest.setOnClickListener{
-            activity?.let {
-                val intent = Intent(context, MessageChattingActivity::class.java)
-                startActivity(intent)
-            }
-
+    fun dataTest(){
+        for(i in 0..20){
+            items.add(MessageRecyclerItem(R.drawable.ic_profile, "홍길동", "안녕하세요 홍길동입니다. 만나서 반갑습니다 우리 같이 여행정보에 대해서 공유해요.", "오후 8:55"))
         }
+    }
 
+    fun clickTest(){
+        startActivity(Intent(context, MessageChattingActivity::class.java))
     }
 
 }
