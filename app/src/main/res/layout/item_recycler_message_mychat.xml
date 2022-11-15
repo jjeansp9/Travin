@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:padding="8dp">
 
     <ImageView
-        android:id="@+id/msg_chat_my_profile"
+        android:id="@+id/msg_chat_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <TextView
-        android:id="@+id/msg_chat_my_name"
+        android:id="@+id/msg_chat_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/white"/>
     <TextView
-        android:id="@+id/msg_chat_my_box"
+        android:id="@+id/msg_chat_box"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_mymessagebox"
@@ -27,13 +28,13 @@
         android:layout_alignParentRight="true"/>
 
     <TextView
-        android:id="@+id/msg_chat_my_time"
+        android:id="@+id/msg_chat_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="12:54"
         android:textSize="12sp"
-        android:layout_toLeftOf="@id/msg_chat_my_box"
-        android:layout_alignBottom="@id/msg_chat_my_box"
+        android:layout_toLeftOf="@id/msg_chat_box"
+        android:layout_alignBottom="@id/msg_chat_box"
         android:layout_marginRight="8dp"/>
 
 </RelativeLayout>
