@@ -25,11 +25,28 @@
         android:src="@drawable/line_edit"
         android:layout_below="@id/msg_title"/>
 
+    <TextView
+        android:id="@+id/tv_friend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="나와 여행스타일이 비슷한 친구 추천"
+        android:layout_below="@id/line"
+        android:padding="16dp"
+        android:textStyle="bold"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/msg_recycler_friend"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/tv_friend"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="horizontal"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/msg_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/line"
+        android:layout_below="@id/msg_recycler_friend"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="vertical"
         app:reverseLayout="true"

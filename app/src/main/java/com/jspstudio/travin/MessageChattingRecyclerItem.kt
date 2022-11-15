@@ -2,7 +2,7 @@ package com.jspstudio.travin
 
 data class MessageChattingRecyclerItem(
 
-    var name:String?,
+    var nickname:String?,
     var message: String?,
     var time: String?,
 )

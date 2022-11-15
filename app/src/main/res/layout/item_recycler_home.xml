@@ -65,7 +65,7 @@
         android:checked="false"
         android:text=" "
         android:textOff=" "
-        android:textOn=" "/>
+        android:textOn=" " />
 
     <ImageView
         android:id="@+id/ic_home_comment"

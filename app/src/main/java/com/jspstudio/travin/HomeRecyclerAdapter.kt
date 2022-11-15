@@ -23,7 +23,6 @@ class HomeRecyclerAdapter constructor(val context: Context, var homeItems:Mutabl
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-
         holder.binding.tvHomeName.text = homeItems[position].homeName // 글 작성자 이름
         holder.binding.tvHomeLocation.text = homeItems[position].homeLocation // 글 작성자 위치
         holder.binding.tvHomeTimeBefore.text = homeItems[position].homeTimeBefore // 글 작성시간
@@ -35,12 +34,12 @@ class HomeRecyclerAdapter constructor(val context: Context, var homeItems:Mutabl
         Glide.with(context).load(homeItems[position].homeComment).into(holder.binding.icHomeComment) // 댓글달기 버튼
 
         holder.binding.icHomeComment.setOnClickListener{
-
             val bottomSheetDialog = BottomSheetDialog(context)
             bottomSheetDialog.setContentView(R.layout.bs_comment)
             bottomSheetDialog.show()
-
         }
+
+
 
     }
 
