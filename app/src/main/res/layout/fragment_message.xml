@@ -25,41 +25,45 @@
         android:src="@drawable/line_edit"
         android:layout_below="@id/msg_title"/>
 
-    <TextView
-        android:id="@+id/tv_friend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="나와 여행스타일이 비슷한 친구 추천"
-        android:layout_below="@id/line"
-        android:padding="16dp"
-        android:textStyle="bold"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/msg_recycler_friend"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_below="@id/tv_friend"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:orientation="horizontal"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/msg_recycler"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/msg_recycler_friend"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:orientation="vertical"
-        app:reverseLayout="true"
-        app:stackFromEnd="true"/>
-
-    <Button
-        android:id="@+id/btn_test"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#13529E"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:text="채팅화면으로 가기(테스트용)"
-        />
+        android:layout_below="@id/line">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_friend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="나와 여행스타일이 비슷한 친구 추천"
+                android:padding="16dp"
+                android:textStyle="bold"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/msg_recycler_friend"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@id/tv_friend"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/msg_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/msg_recycler_friend"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:reverseLayout="true"
+                app:stackFromEnd="true" />
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
 
 </RelativeLayout>

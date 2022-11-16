@@ -27,9 +27,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/layout_msg_chat"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_below="@id/appbar_layout"
         android:orientation="vertical"
-        android:layout_below="@id/appbar_layout" />
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     <LinearLayout
         android:id="@+id/layout_msg_chat"

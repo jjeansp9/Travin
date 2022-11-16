@@ -104,9 +104,10 @@ class SignUpActivity : AppCompatActivity() {
         profile["nickname"] = UserDatas.nickname!!
         profile["id"] = UserDatas.id!!
         profile["password"] = UserDatas.password!!
+        profile["profile"] = R.drawable.profile.toString()
 
         val sdf: SimpleDateFormat = SimpleDateFormat("yyyyMMddHHmmSS")
-        val fileName:String = sdf.format(Date()) + "_" + UserDatas.id + ".png" // 저장될 파일명 : 날짜 + 아이디 + .png
+        val fileName:String = sdf.format(Date()) + "_" + UserDatas.id // 저장될 파일명 : 날짜 + 아이디 + .png
         userRef.document(fileName).set(profile)
 
         // 앱을 처음 실행할때 한번 입력한 회원정보를 폰에 저장 (다시 입력하지 않기위해)
@@ -116,6 +117,7 @@ class SignUpActivity : AppCompatActivity() {
         editor.putString("id", UserDatas.id)
         editor.putString("nickname", UserDatas.nickname)
         editor.putString("password", UserDatas.password)
+        editor.putString("profile", R.drawable.profile.toString())
 
         editor.commit()
 
