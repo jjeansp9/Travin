@@ -20,6 +20,7 @@ class MessageChattingActivity : AppCompatActivity() {
 
     val firebaseFirestore = FirebaseFirestore.getInstance() // 파이어스토어 생성
     var chatRef : CollectionReference? = null
+    var otherChatRef : CollectionReference? = null
 
 
 
@@ -96,6 +97,7 @@ class MessageChattingActivity : AppCompatActivity() {
         val otherName = pref.getString("nickname", null)
 
         chatRef = firebaseFirestore.collection(UserDatas.nickname + "," + otherName) // 내 닉네임 + 상대방 닉네임의 컬렉션이름
+        otherChatRef = firebaseFirestore.collection(otherName + "," + UserDatas.nickname) // 상대방 + 내 닉네임의 컬렉션이름
 
         val sdf: SimpleDateFormat = SimpleDateFormat("yyyyMMddHHmmss")
         val fileName:String = sdf.format(Date()) + "_" + nickname // 저장될 파일명 : 닉네임 + 날짜 + .png
@@ -106,6 +108,7 @@ class MessageChattingActivity : AppCompatActivity() {
         chat["time"] = time
 
         chatRef?.document(fileName)?.set(chat)
+        otherChatRef?.document(fileName)?.set(chat)
 
         binding.msgChatInput.setText("")
 

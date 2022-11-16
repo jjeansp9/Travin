@@ -24,6 +24,9 @@ class MessageFragment : Fragment() {
     var items: MutableList<MessageRecyclerItem> = mutableListOf()
     var friendItems: MutableList<MessageFriendRecyclerItem> = mutableListOf()
 
+    val listAdapter by lazy { context?.let { MessageRecyclerAdapter(it, items) } }
+    val friendListAdapter by lazy { context?.let { MessageFriendRecyclerAdapter(it, friendItems) } }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -38,60 +41,21 @@ class MessageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val listAdapter = MessageRecyclerAdapter(view.context, items)
-        val friendListAdapter = MessageFriendRecyclerAdapter(view.context, friendItems)
         binding.msgRecycler.adapter = listAdapter // 메세지 리스트
         binding.msgRecyclerFriend.adapter = friendListAdapter // 메세지화면 친구추천 리스트
 
-        dataTest() // 메세지목록 메소드
+        dataTest() // 메세지목록 데이터 테스트 메소드
         msgFriend() // 메세지 친구추천목록 메소드
-
-        // 클릭한 친구 메세지창 오픈
-        listAdapter.setItemClickListener (object : MessageRecyclerAdapter.OnItemClickListener{
-            override fun onClick(v: View, position: Int) {
-
-                val pref = view.context?.getSharedPreferences("otherAccount", AppCompatActivity.MODE_PRIVATE)
-                val editor = pref?.edit()
-                editor?.putString("nickname", items[position].name)
-                editor?.commit()
-
-                val intent = Intent(context, MessageChattingActivity::class.java)
-                startActivity(intent)
-
-            }
-        })
-
-        // 친구추천 목록에 있는 프로필리스트들을 클릭시 친구신청 다이얼로그 오픈
-        friendListAdapter.setItemClickListener (object : MessageFriendRecyclerAdapter.OnItemClickListener{
-            override fun onClick(v: View, position: Int) {
-
-                val pref = view.context?.getSharedPreferences("otherAccount", AppCompatActivity.MODE_PRIVATE)
-                val editor = pref?.edit()
-                editor?.putString("nickname", friendItems[position].name)
-                editor?.commit()
-
-                val otherName = pref?.getString("nickname", null)
-
-                val builder = AlertDialog.Builder(view.context)
-                    .setTitle("${otherName}님에게 친구신청 하시겠습니까?")
-                    .setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int ->
-                        Toast.makeText(context, "${otherName}님에게 친구신청을 하였습니다", Toast.LENGTH_SHORT).show()
-                    }
-                    .setNegativeButton("취소",
-                        DialogInterface.OnClickListener { dialog, which ->
-                            Toast.makeText(context, "친구신청 취소", Toast.LENGTH_SHORT).show()
-                        })
-                builder.show()
-            }
-        })
+        openMessageFriend() // 클릭한 친구 메세지창 오픈 메소드
+        requestFriend() // 친구신청 메소드
 
     }
 
 
     fun dataTest(){
         for(i in 0..10){
-            items.add(MessageRecyclerItem(R.drawable.profile, "홍길동", "안녕하세요 홍길동입니다. 만나서 반갑습니다 우리 같이 여행정보에 대해서 공유해요.", "오후 8:55"))
-            items.add(MessageRecyclerItem(R.drawable.profile, "김수현", "안녕하세요 홍길동입니다. 만나서 반갑습니다 우리 같이 여행정보에 대해서 공유해요.", "오후 8:55"))
+            items.add(MessageRecyclerItem(R.drawable.profile, "김지환", "안녕하세요 홍길동입니다. 만나서 반갑습니다 우리 같이 여행정보에 대해서 공유해요.", "오후 8:55"))
+            items.add(MessageRecyclerItem(R.drawable.profile, "아이린", "안녕하세요 홍길동입니다. 만나서 반갑습니다 우리 같이 여행정보에 대해서 공유해요.", "오후 8:55"))
         }
 
     }
@@ -124,6 +88,52 @@ class MessageFragment : Fragment() {
             }
         }
 
+    }
+
+    // 친구신청 메소드
+    fun requestFriend(){
+        friendListAdapter?.setItemClickListener (object : MessageFriendRecyclerAdapter.OnItemClickListener{
+            override fun onClick(v: View, position: Int) {
+
+                val pref = view?.context?.getSharedPreferences("otherAccount", AppCompatActivity.MODE_PRIVATE)
+                val editor = pref?.edit()
+                editor?.putString("nickname", friendItems[position].name)
+                editor?.commit()
+
+                val otherName = pref?.getString("nickname", null)
+
+                val builder = view?.let {
+                    AlertDialog.Builder(it.context)
+                        .setTitle("${otherName}님에게 친구신청 하시겠습니까?")
+                        .setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int ->
+                            Toast.makeText(context, "${otherName}님에게 친구신청을 하였습니다", Toast.LENGTH_SHORT).show()
+
+                        }
+                        .setNegativeButton("취소",
+                            DialogInterface.OnClickListener { dialog, which ->
+                                Toast.makeText(context, "친구신청 취소", Toast.LENGTH_SHORT).show()
+                            })
+                }
+                builder?.show()
+            }
+        })
+    }
+
+    // 클릭한 친구 메세지창 오픈
+    fun openMessageFriend(){
+        listAdapter?.setItemClickListener (object : MessageRecyclerAdapter.OnItemClickListener{
+            override fun onClick(v: View, position: Int) {
+
+                val pref = view?.context?.getSharedPreferences("otherAccount", AppCompatActivity.MODE_PRIVATE)
+                val editor = pref?.edit()
+                editor?.putString("nickname", items[position].name)
+                editor?.commit()
+
+                val intent = Intent(context, MessageChattingActivity::class.java)
+                startActivity(intent)
+
+            }
+        })
     }
 
 
