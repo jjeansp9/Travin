@@ -55,13 +55,13 @@
         android:id="@+id/account_keyword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="홍길동님의 여행스타일"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
         android:layout_below="@id/account_aboutme"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="14dp"/>
+        android:layout_marginTop="14dp"
+        android:text="홍길동님의 여행스타일"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/line"

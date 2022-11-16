@@ -1,5 +1,6 @@
 package com.jspstudio.travin
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -29,8 +30,15 @@ class AccountFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val pref = context?.getSharedPreferences("account", AppCompatActivity.MODE_PRIVATE)
+        val nickname = pref?.getString("nickname", null)
+
+        binding.accountName.text = "$nickname"
+        binding.accountKeyword.text = "${nickname}님의 여행스타일"
 
         binding.accountProfile.setOnClickListener{uploadProfile()} // 프로필사진 업로드
         binding.tvHotelList.setOnClickListener { hotelList() } // 호텔 리스트
@@ -59,11 +67,11 @@ class AccountFragment : Fragment() {
 
     // 호텔 리스트 메소드
     private fun hotelList(){
-
+        startActivity(Intent(context, AccountHotelListActivity::class.java))
     }
     // 친구목록 리스트 메소드
     private fun friendList(){
-
+        startActivity(Intent(context, AccountFriendListActivity::class.java))
     }
     // 내가쓴 글 리스트 메소드
     private fun myUploadList(){
