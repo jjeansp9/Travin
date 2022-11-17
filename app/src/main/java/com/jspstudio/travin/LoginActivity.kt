@@ -1,10 +1,12 @@
 package com.jspstudio.travin
 
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.jspstudio.travin.databinding.ActivityLoginBinding
 
 // 로그인 & 회원가입 시작 화면 //
@@ -14,7 +16,6 @@ class LoginActivity : AppCompatActivity() {
     lateinit var btn: Button
 
     val binding: ActivityLoginBinding by lazy { ActivityLoginBinding.inflate(layoutInflater) }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +31,7 @@ class LoginActivity : AppCompatActivity() {
         binding.btnLogin.setOnClickListener{
             val intent: Intent = Intent(this, SignInActivity::class.java)
             startActivity(intent)
+
         }
 
 

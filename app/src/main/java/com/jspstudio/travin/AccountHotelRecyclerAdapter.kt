@@ -10,7 +10,9 @@ import com.jspstudio.travin.databinding.ItemRecyclerAccountHotelBinding
 
 class AccountHotelRecyclerAdapter constructor(val context: Context, var hotelItems: MutableList<AccountHotelItem>):
     RecyclerView.Adapter<AccountHotelRecyclerAdapter.VH>() {
-
+    inner class VH constructor(itemView: View) : RecyclerView.ViewHolder(itemView){
+        val binding: ItemRecyclerAccountHotelBinding = ItemRecyclerAccountHotelBinding.bind(itemView)
+    }
     // (2) 리스너 인터페이스
     interface OnItemClickListener {
         fun onClick(v: View, position: Int)
@@ -22,9 +24,6 @@ class AccountHotelRecyclerAdapter constructor(val context: Context, var hotelIte
     // (4) setItemClickListener로 설정한 함수 실행
     private lateinit var itemClickListener : OnItemClickListener
 
-    inner class VH constructor(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val binding: ItemRecyclerAccountHotelBinding = ItemRecyclerAccountHotelBinding.bind(itemView)
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         val layoutInflater:LayoutInflater = LayoutInflater.from(context)

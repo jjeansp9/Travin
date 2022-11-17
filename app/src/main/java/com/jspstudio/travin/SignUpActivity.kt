@@ -75,7 +75,7 @@ class SignUpActivity : AppCompatActivity() {
             override fun onResponse(call: Call<String?>, response: Response<String?>) {
                 val s = response.body()
 
-                Toast.makeText(this@SignUpActivity, "" + s, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@SignUpActivity, "" + s, Toast.LENGTH_SHORT).show() // 메세지 : 회원가입 완료
 
                 val intent: Intent = Intent(this@SignUpActivity, KeywordSelectActivity::class.java)
                 startActivity(intent)
@@ -101,9 +101,9 @@ class SignUpActivity : AppCompatActivity() {
 
         // Document 명을 닉네임으로, Field'값'에 이미지경로 url을 저장
         val profile: MutableMap<String, String> = HashMap()
-        profile["nickname"] = UserDatas.nickname!!
-        profile["id"] = UserDatas.id!!
-        profile["password"] = UserDatas.password!!
+        profile["nickname"] = UserDatas.nickname.toString()
+        profile["id"] = UserDatas.id.toString()
+        profile["password"] = UserDatas.password.toString()
         profile["profile"] = R.drawable.profile.toString()
 
         val sdf: SimpleDateFormat = SimpleDateFormat("yyyyMMddHHmmSS")

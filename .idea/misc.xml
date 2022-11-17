@@ -24,9 +24,11 @@
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/drawable-anydpi/ic_next.xml" value="0.14" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/drawable-anydpi/ic_profile_select.xml" value="0.1405" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/drawable-anydpi/ic_search.xml" value="0.138" />
+        <entry key="..\:/Android/Projects/Travin/app/src/main/res/drawable/ic_fav_selector.xml" value="0.1575" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/drawable/ic_upload_image.xml" value="0.1395" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/drawable/kakao_button.xml" value="0.121" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/activity_account_friend_list.xml" value="0.25" />
+        <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/activity_account_friend_response.xml" value="0.25" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/activity_account_hotel_list.xml" value="0.25" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/activity_intro.xml" value="0.30844444444444447" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/activity_keyword_select.xml" value="0.25" />
@@ -37,7 +39,7 @@
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/activity_upload.xml" value="0.22" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/activity_upload_community.xml" value="0.25" />
-        <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/bs_comment.xml" value="0.3117117117117117" />
+        <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/bs_comment.xml" value="0.25" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/dialog.xml" value="0.31261261261261264" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/fragment_account.xml" value="0.2" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/fragment_community.xml" value="0.2657407407407407" />
@@ -50,7 +52,9 @@
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/fragment_tab4_accompany.xml" value="0.25" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/fragment_tab5_review.xml" value="0.31261261261261264" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/item_recycler_account_friend.xml" value="0.25" />
+        <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/item_recycler_account_friend_list.xml" value="0.3117117117117117" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/item_recycler_account_hotel.xml" value="0.25" />
+        <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/item_recycler_comment.xml" value="0.3117117117117117" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/item_recycler_home.xml" value="0.25" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/item_recycler_home_popular.xml" value="0.31261261261261264" />
         <entry key="..\:/Android/Projects/Travin/app/src/main/res/layout/item_recycler_message.xml" value="0.25" />
