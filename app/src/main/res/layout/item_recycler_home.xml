@@ -67,6 +67,7 @@
         android:textOff=" "
         android:textOn=" " />
 
+
     <ImageView
         android:id="@+id/ic_home_comment"
         android:layout_width="30dp"

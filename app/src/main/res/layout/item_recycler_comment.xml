@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="8dp">
+    android:layout_height="70dp">
 
-<!--    <de.hdodenhof.circleimageview.CircleImageView-->
-<!--        android:id="@+id/msg_chat_profile"-->
-<!--        android:layout_width="50dp"-->
-<!--        android:layout_height="50dp"-->
-<!--        android:src="@drawable/profile"-->
-<!--        android:layout_marginTop="8dp"-->
-<!--        android:layout_marginLeft="16dp"/>-->
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/msg_chat_profile"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/profile"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="16dp"/>
 
     <TextView
         android:id="@+id/msg_chat_name"
@@ -20,12 +19,14 @@
         android:layout_marginTop="8dp"
         android:text="user name"
         android:textSize="14sp"
+        android:layout_toRightOf="@id/msg_chat_profile"
         android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/msg_chat_box"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/msg_chat_profile"
         android:background="@drawable/bg_othermessagebox"
 
         android:layout_marginTop="8dp"

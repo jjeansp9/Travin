@@ -11,6 +11,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.jspstudio.travin.databinding.ActivityMessageChattingBinding
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.HashMap
 
 class MessageChattingActivity : AppCompatActivity() {
 
@@ -21,7 +22,7 @@ class MessageChattingActivity : AppCompatActivity() {
     val firebaseFirestore = FirebaseFirestore.getInstance() // 파이어스토어 생성
     var chatRef : CollectionReference? = null
     var otherChatRef : CollectionReference? = null
-
+    var num: Int= 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,7 +47,7 @@ class MessageChattingActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        supportActionBar!!.subtitle = otherName // 닉네임
+        supportActionBar!!.title = otherName // 메세지 상대 닉네임
     }
 
 
@@ -54,11 +55,15 @@ class MessageChattingActivity : AppCompatActivity() {
     // 파이어베이스 데이터 불러오기
     fun loadDatafromFirebase(){
 
-        // 메시지 상대방 닉네임 가져오기
-        val pref = getSharedPreferences("otherAccount", AppCompatActivity.MODE_PRIVATE)
-        val otherName = pref.getString("nickname", null)
+        // 내 닉네임 가져오기
+        val pref = getSharedPreferences("account", AppCompatActivity.MODE_PRIVATE)
+        val userName = pref?.getString("nickname", null)
 
-        chatRef = firebaseFirestore.collection(UserDatas.nickname + "," + otherName) // 내 닉네임 + 상대방 닉네임의 컬렉션이름
+        // 메시지 상대방 닉네임 가져오기
+        val otherPref = getSharedPreferences("otherAccount", AppCompatActivity.MODE_PRIVATE)
+        val otherName = otherPref.getString("nickname", null)
+
+        chatRef = firebaseFirestore.collection(userName + "," + otherName) // 내 닉네임 + 상대방 닉네임의 컬렉션이름
 
         chatRef?.addSnapshotListener { value, error ->
             val documentChangeList : List<DocumentChange> = value!!.documentChanges
@@ -73,9 +78,14 @@ class MessageChattingActivity : AppCompatActivity() {
                 val time = chatUpload["time"]
 
                 // 홈 업로드 글 데이터 추가
-                val item : MessageChattingRecyclerItem = MessageChattingRecyclerItem(nickname, message, time)
 
-                items.add(item)
+                if ("$userName"==nickname || "$otherName" == nickname){
+                    val item : MessageChattingRecyclerItem = MessageChattingRecyclerItem(nickname, message, time)
+                    items.add(item)
+                }
+
+
+
 
                 // 채팅 리사이클러뷰 갱신
                 binding.msgChatRecycler.adapter?.notifyItemInserted(items.size -1)
@@ -96,19 +106,30 @@ class MessageChattingActivity : AppCompatActivity() {
         val pref = getSharedPreferences("otherAccount", AppCompatActivity.MODE_PRIVATE)
         val otherName = pref.getString("nickname", null)
 
-        chatRef = firebaseFirestore.collection(UserDatas.nickname + "," + otherName) // 내 닉네임 + 상대방 닉네임의 컬렉션이름
-        otherChatRef = firebaseFirestore.collection(otherName + "," + UserDatas.nickname) // 상대방 + 내 닉네임의 컬렉션이름
+        chatRef = firebaseFirestore.collection(nickname + "," + otherName) // 내 닉네임 + 상대방 닉네임의 컬렉션이름
+        otherChatRef = firebaseFirestore.collection(otherName + "," + nickname) // 상대방 + 내 닉네임의 컬렉션이름
 
         val sdf: SimpleDateFormat = SimpleDateFormat("yyyyMMddHHmmss")
         val fileName:String = sdf.format(Date()) + "_" + nickname // 저장될 파일명 : 닉네임 + 날짜 + .png
         val chat: MutableMap<String, String> = HashMap() // Object 사용하면 int string 다 가능. <식별자, 값>
+        val msg: MutableMap<String, String> = HashMap()
 
         chat["nickname"] = nickname // ("식별자", 값)
         chat["message"] = message
         chat["time"] = time
 
+        msg["nickname"] = num.toString()+"$otherName" // ("식별자", 값)
+        msg["message"] = message
+        msg["time"] = time
+
         chatRef?.document(fileName)?.set(chat)
         otherChatRef?.document(fileName)?.set(chat)
+
+        chatRef = firebaseFirestore.collection(nickname + "," + "[msgList]") // 내 닉네임 + 상대방 닉네임의 컬렉션이름
+        otherChatRef = firebaseFirestore.collection(otherName + "," + "[msgList]") // 상대방 + 내 닉네임의 컬렉션이름
+
+        chatRef?.document("$otherName")?.set(msg)
+        otherChatRef?.document(nickname)?.set(chat)
 
         binding.msgChatInput.setText("")
 

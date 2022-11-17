@@ -94,14 +94,14 @@ class UploadActivity : AppCompatActivity() {
         val fileName:String = sdf.format(Date()) + "_" + UserDatas.nickname + ".png" // 저장될 파일명 : 닉네임 + 날짜 + .png
 
         val firebaseStorage = FirebaseStorage.getInstance() // storage
-        val uploadRef: StorageReference = firebaseStorage.getReference("homeUpload/$fileName") // 컬렉션이름 : homeUpload
+        val uploadRef: StorageReference = firebaseStorage.getReference("homeUpload/$fileName") // 스토리지 컬렉션이름 : homeUpload
 
         uploadRef.putFile(imgUri).addOnSuccessListener {
             uploadRef.downloadUrl.addOnSuccessListener {
                 UploadDatas.uploadImg = it.toString()
 
                 val firebaseFireStore: FirebaseFirestore = FirebaseFirestore.getInstance() // firestore
-                val homeUploadRef = firebaseFireStore.collection("homeUploads") // 컬렉션 생성 : homeUploads
+                val homeUploadRef = firebaseFireStore.collection("homeUploads") // 파이어스토어 컬렉션 생성 : homeUploads
 
                 val calendar : Calendar = Calendar.getInstance() // 현재시간 객체
                 val timeHour: String = calendar[Calendar.HOUR_OF_DAY].toString()

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 
 class MessageChattingRecyclerAdapter constructor(val context: Context, var msgItems:MutableList<MessageChattingRecyclerItem>):
@@ -14,7 +15,9 @@ class MessageChattingRecyclerAdapter constructor(val context: Context, var msgIt
     val TYPE_OTHER = 1
 
     override fun getItemViewType(position: Int): Int {
-        return if (msgItems[position].nickname.toString() == UserDatas.nickname.toString()) TYPE_MY else TYPE_OTHER
+        val pref = context.getSharedPreferences("account", AppCompatActivity.MODE_PRIVATE)
+        val nickname = pref?.getString("nickname", null)
+        return if (msgItems[position].nickname.toString() == nickname) TYPE_MY else TYPE_OTHER
     }
 
     inner class VH(itemView: View) : RecyclerView.ViewHolder(itemView){

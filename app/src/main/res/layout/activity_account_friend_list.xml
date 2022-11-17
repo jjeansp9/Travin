@@ -28,28 +28,41 @@
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <TextView
-        android:id="@+id/tv_request_friend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="친구 요청"
-        android:layout_below="@id/appbar_layout"
-        android:layout_margin="16dp"
-        android:textSize="16sp"
-        android:textStyle="bold"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/request_friend_recycler"
+    <RelativeLayout
+        android:id="@+id/response_friend_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_request_friend"/>
+        android:layout_below="@id/appbar_layout">
+
+        <TextView
+            android:id="@+id/tv_request_friend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"
+            android:text="친구 요청"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_right"
+            android:layout_marginRight="16dp"/>
+
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/tv_my_friends"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="친구"
-        android:layout_below="@id/request_friend_recycler"
+        android:layout_below="@id/response_friend_list"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
@@ -61,7 +74,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0"
-        android:layout_below="@id/request_friend_recycler"
+        android:layout_below="@id/response_friend_list"
         android:layout_toRightOf="@id/tv_my_friends"
         android:layout_marginTop="16dp"
         android:layout_marginLeft="8dp"
@@ -72,6 +85,9 @@
         android:id="@+id/friend_list_recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_my_friends"/>
+        android:layout_below="@id/tv_my_friends"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
 
 </RelativeLayout>
