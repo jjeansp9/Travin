@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.DocumentSnapshot
@@ -56,8 +57,14 @@ class MessageFragment : Fragment() {
         msgFriend() // 메세지 친구추천목록 메소드
         openMessageFriend() // 클릭한 친구 메세지창 오픈 메소드
         requestFriend() // 친구신청 메소드
+
+    }
+
+    override fun onResume() {
+        super.onResume()
         msgList() // 메세지목록 메소드
     }
+
 
 
     // 메세지한 기록 불러오기
@@ -70,7 +77,7 @@ class MessageFragment : Fragment() {
         val otherPref = context?.getSharedPreferences("otherAccount", AppCompatActivity.MODE_PRIVATE)
         val otherName = otherPref?.getString("nickname", null)
 
-        chatRef = firebaseFirestore.collection(nickname + "," + "[msgList]") // 내 닉네임 + 상대방 닉네임의 컬렉션이름
+        chatRef = firebaseFirestore.collection("[msgList]"+nickname) // 내 닉네임 + 상대방 닉네임의 컬렉션이름
 
         chatRef?.addSnapshotListener { value, error ->
             val documentChangeList : List<DocumentChange> = value!!.documentChanges
@@ -88,13 +95,13 @@ class MessageFragment : Fragment() {
 
 
                 val item : MessageRecyclerItem = MessageRecyclerItem(R.drawable.profile,"$nickname", "$message", "$time")
-                items.add(item)
-
-
 
                 // 채팅 리사이클러뷰 갱신
                 binding.msgRecycler.adapter?.notifyItemInserted(items.size -1)
                 binding.msgRecycler.scrollToPosition(binding.msgRecycler.adapter!!.itemCount -1)
+                items.clear()
+                items.add(item)
+                binding.msgRecycler.adapter?.notifyDataSetChanged()
             }
         }
     }
@@ -116,12 +123,12 @@ class MessageFragment : Fragment() {
                 val profile = homeUpload["profile"]
                 val nickName = homeUpload["nickname"]
 
-                // 홈 업로드 글 데이터 추가
+                // 데이터 추가
                 val item : MessageFriendRecyclerItem = MessageFriendRecyclerItem(R.drawable.profile, nickName)
 
                 friendItems.add(item)
 
-                // 오늘의인기글 홈 리사이클러뷰 갱신
+                // 리사이클러뷰 갱신
                 binding.msgRecyclerFriend.adapter?.notifyItemInserted(friendItems.size -1)
 
             }
@@ -134,10 +141,7 @@ class MessageFragment : Fragment() {
         friendListAdapter?.setItemClickListener (object : MessageFriendRecyclerAdapter.OnItemClickListener{
             override fun onClick(v: View, position: Int) {
 
-
-                val otherPref = view?.context?.getSharedPreferences("otherAccount", AppCompatActivity.MODE_PRIVATE)
-                val otherName = otherPref?.getString("nickname", null)
-
+                val otherName = friendItems[position].name // 클릭한 추천친구 닉네임
 
                 val builder = view?.let {
                     AlertDialog.Builder(context, R.style.MyAlertDialogStyle)
@@ -148,8 +152,8 @@ class MessageFragment : Fragment() {
                             val nickname = pref?.getString("nickname", null)
 
                             // 파이어스토어에 친구신청 컬렉션만들고 저장하기
-                            chatRef = firebaseFirestore.collection("$nickname[requestFriendsList]") // 내 닉네임 + 상대방 닉네임의 컬렉션이름
-                            otherChatRef = firebaseFirestore.collection("$otherName[responseList]") // 상대방 + 내 닉네임의 컬렉션이름
+                            chatRef = firebaseFirestore.collection("[requestFriendsList]$nickname") // 내 닉네임 + 상대방 닉네임의 컬렉션이름
+                            otherChatRef = firebaseFirestore.collection("[responseList]$otherName") // 상대방 + 내 닉네임의 컬렉션이름
 
                             val fileName:String = "$nickname" // 저장될 파일명 : 닉네임 + 날짜 + .png
                             val otherFileName:String = "$otherName" // 저장될 파일명 : 닉네임 + 날짜 + .png

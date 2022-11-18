@@ -50,7 +50,7 @@ class AccountFriendResponseActivity : AppCompatActivity() {
     fun loadRequestList(){
 
         val nickname = UserDatas.nickname.toString()
-        requestRef = firebaseFirestore.collection("$nickname[responseList]") // 내 닉네임 + 상대방 닉네임의 컬렉션이름
+        requestRef = firebaseFirestore.collection("[responseList]$nickname") // 내 닉네임 + 상대방 닉네임의 컬렉션이름
 
         requestRef?.addSnapshotListener { value, error ->
             val documentChangeList : List<DocumentChange> = value!!.documentChanges
@@ -64,15 +64,18 @@ class AccountFriendResponseActivity : AppCompatActivity() {
 
                 val item : AccountFriendResponseItem = AccountFriendResponseItem(R.drawable.profile, nickname, 1, 0)
 
-                items.add(item)
-
-                // 채팅 리사이클러뷰 갱신
+                // 리사이클러뷰 갱신
                 binding.responseFriendRecycler.adapter?.notifyItemInserted(items.size -1)
                 binding.responseFriendRecycler.scrollToPosition(binding.responseFriendRecycler.adapter!!.itemCount -1)
 
+                items.clear()
+                items.add(item)
+
+                binding.responseFriendRecycler.adapter?.notifyDataSetChanged()
             }
         }
         loadRequestFriends() // 친구요청 목록의 리사이클러뷰(수락,거절,친구 요청인 프로필) 클릭
+
     }
 
     // 리사이클러뷰 아이템 클릭
@@ -86,12 +89,12 @@ class AccountFriendResponseActivity : AppCompatActivity() {
                 val otherName = "${items[position].responseName}" // 상대이름 가져오기
 
                 // 친구요청목록 삭제
-                requestRef?.firestore?.collection("$nickname[responseList]")?.document("$otherName")?.delete()
+                requestRef?.firestore?.collection("[responseList]$nickname")?.document("$otherName")?.delete()
                 // 친구요청목록 삭제
-                requestRef?.firestore?.collection("$otherName[requestFriendsList]")?.document("$nickname")?.delete()
+                requestRef?.firestore?.collection("[requestFriendsList]$otherName")?.document("$nickname")?.delete()
 
-                friendRef = firebaseFirestore.collection("$nickname[friends]") // 내 닉네임 + 상대방 닉네임의 컬렉션이름
-                otherFriendRef = firebaseFirestore.collection("$otherName[friends]") // 상대방 + 내 닉네임의 컬렉션이름
+                friendRef = firebaseFirestore.collection("[friends]$nickname") // 내 닉네임 + 상대방 닉네임의 컬렉션이름
+                otherFriendRef = firebaseFirestore.collection("[friends]$otherName") // 상대방 + 내 닉네임의 컬렉션이름
 
                 val fileName:String = nickname // 저장될 파일명 : 닉네임 + 날짜 + .png
                 val otherFileName:String = "$otherName" // 저장될 파일명 : 닉네임 + 날짜 + .png
@@ -114,9 +117,9 @@ class AccountFriendResponseActivity : AppCompatActivity() {
                 val otherName = "${items[position].responseName}" // 상대이름 가져오기
 
                 // 친구요청목록 삭제
-                requestRef?.firestore?.collection("$nickname[responseList]")?.document("$otherName")?.delete()
+                requestRef?.firestore?.collection("[responseList]$nickname")?.document("$otherName")?.delete()
                 // 친구요청목록 삭제
-                requestRef?.firestore?.collection("$otherName[requestFriendsList]")?.document("$nickname")?.delete()
+                requestRef?.firestore?.collection("[requestFriendsList]$otherName")?.document("$nickname")?.delete()
 
                 Toast.makeText(this@AccountFriendResponseActivity, "${items[position].responseName}님의 친구요청을 거절했습니다.", Toast.LENGTH_SHORT).show()
             }

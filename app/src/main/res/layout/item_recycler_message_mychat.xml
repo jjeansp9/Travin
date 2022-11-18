@@ -14,18 +14,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/white"/>
+
     <TextView
         android:id="@+id/msg_chat_box"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_mymessagebox"
+        android:layout_alignParentRight="true"
         android:layout_marginTop="8dp"
-        android:text="안녕하세요 저는 XXX입니다."
-        android:textColor="@color/white"
-        android:padding="8dp"
         android:layout_marginRight="16dp"
+        android:background="@drawable/bg_mymessagebox"
         android:maxWidth="200dp"
-        android:layout_alignParentRight="true"/>
+        android:padding="8dp"
+        android:text="안녕하세요 저는 XXX입니다."
+        android:textColor="@color/white" />
 
     <TextView
         android:id="@+id/msg_chat_time"
