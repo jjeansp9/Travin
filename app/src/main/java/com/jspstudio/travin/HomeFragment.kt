@@ -86,14 +86,15 @@ class HomeFragment : Fragment() {
 
             // 홈화면 업로드된 글에 댓글창 열고 댓글달기
             override fun commentClick(v: View, position: Int) {
-                val commentBinding: BsCommentBinding = BsCommentBinding.inflate(layoutInflater)
+                val commentBinding: BsCommentBinding = BsCommentBinding.inflate(layoutInflater) // bs_comment.xml 바인딩
                 val bottomSheetDialog = BottomSheetDialog(view!!.context)
-                bottomSheetDialog.setContentView(commentBinding.root) // bs_comment.xml 바인딩해서 연결
+                bottomSheetDialog.setContentView(commentBinding.root) // 다이얼로그에 bs_comment.xml 바인딩해서 연결
                 commentBinding.commentRecycler.adapter = commentAdapter // 댓글창 어댑터연결
                 commentItems.clear()
 
                 bottomSheetDialog.behavior?.isDraggable = false // 드래그할때 바텀시트 크기는 고정되게 설정 (드래그 안되게 설정)
-                bottomSheetDialog.behavior?.maxHeight = 1200
+                bottomSheetDialog.behavior?.maxHeight = 1500
+                bottomSheetDialog.behavior?.peekHeight = 1500
                 bottomSheetDialog.show()
 
                 // 댓글달린 데이터 불러오기
