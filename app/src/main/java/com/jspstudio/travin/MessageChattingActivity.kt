@@ -84,9 +84,6 @@ class MessageChattingActivity : AppCompatActivity() {
                     items.add(item)
                 }
 
-
-
-
                 // 채팅 리사이클러뷰 갱신
                 binding.msgChatRecycler.adapter?.notifyItemInserted(items.size -1)
                 binding.msgChatRecycler.scrollToPosition(binding.msgChatRecycler.adapter!!.itemCount -1)
@@ -118,15 +115,15 @@ class MessageChattingActivity : AppCompatActivity() {
         chat["message"] = message
         chat["time"] = time
 
-        msg["nickname"] = num.toString()+"$otherName" // ("식별자", 값)
+        msg["nickname"] = "$otherName" // ("식별자", 값)
         msg["message"] = message
         msg["time"] = time
 
         chatRef?.document(fileName)?.set(chat)
         otherChatRef?.document(fileName)?.set(chat)
 
-        chatRef = firebaseFirestore.collection(nickname + "," + "[msgList]") // 내 닉네임 + 상대방 닉네임의 컬렉션이름
-        otherChatRef = firebaseFirestore.collection(otherName + "," + "[msgList]") // 상대방 + 내 닉네임의 컬렉션이름
+        chatRef = firebaseFirestore.collection("[msgList]"+nickname) // 내 닉네임 + 상대방 닉네임의 컬렉션이름
+        otherChatRef = firebaseFirestore.collection("[msgList]"+otherName) // 상대방 + 내 닉네임의 컬렉션이름
 
         chatRef?.document("$otherName")?.set(msg)
         otherChatRef?.document(nickname)?.set(chat)

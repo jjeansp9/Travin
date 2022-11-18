@@ -51,7 +51,7 @@ class AccountFriendListActivity : AppCompatActivity() {
         val pref = getSharedPreferences("account", AppCompatActivity.MODE_PRIVATE)
         val nickname = pref?.getString("nickname", null)
 
-        friendListRef = firebaseFirestore.collection("$nickname[friends]") // 내 닉네임 + 상대방 닉네임의 컬렉션이름
+        friendListRef = firebaseFirestore.collection("[friends]$nickname") // 내 닉네임 + 상대방 닉네임의 컬렉션이름
 
         friendListRef?.addSnapshotListener { value, error ->
             val documentChangeList: List<DocumentChange> = value!!.documentChanges
@@ -63,12 +63,12 @@ class AccountFriendListActivity : AppCompatActivity() {
                 val chatUpload: Map<String, String> = snapshot.data as Map<String, String>
                 val nickname = chatUpload["nickname"]
 
-                // 홈 업로드 글 데이터 추가
+                // 데이터 추가
                 val item: AccountFriendListItem = AccountFriendListItem(R.drawable.profile, nickname.toString())
                 items.add(item)
                 binding.tvMyFriendsNumber.text = items.size.toString()
 
-                // 채팅 리사이클러뷰 갱신
+                // 리사이클러뷰 갱신
                 binding.friendListRecycler.adapter?.notifyItemInserted(items.size - 1)
             }
         }

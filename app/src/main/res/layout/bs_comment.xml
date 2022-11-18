@@ -3,20 +3,31 @@
     android:layout_width="match_parent"
     android:layout_height="500dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white"
-    android:padding="16dp">
+    android:background="@color/white">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/comment_recycler"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:orientation="vertical"/>
+        android:layout_height="match_parent"
+        android:layout_above="@id/linear">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/comment_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="vertical"
+            app:reverseLayout="true"
+            app:stackFromEnd="true"/>
+
+    </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:padding="16dp">
 
         <EditText
             android:id="@+id/et_bs_comment"
@@ -34,7 +45,7 @@
             android:paddingBottom="8dp" />
 
         <ImageView
-            android:id="@+id/msg_chat_send"
+            android:id="@+id/comment_send"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="7"
