@@ -27,6 +27,7 @@ class AccountFriendListActivity : AppCompatActivity() {
         binding.friendListRecycler.adapter = listAdapter // 메세지 리스트
 
         setSupportActionBar(binding.toolbar)
+        supportActionBar?.title = "내 친구목록"
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         binding.responseFriendList.setOnClickListener{click() }

@@ -34,6 +34,7 @@ class AccountFriendResponseActivity : AppCompatActivity() {
         binding.responseFriendRecycler.adapter = listAdapter // 메세지 리스트
 
         setSupportActionBar(binding.toolbar)
+        supportActionBar?.title = "친구 요청"
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         loadRequestList()

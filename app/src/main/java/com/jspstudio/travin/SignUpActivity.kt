@@ -27,6 +27,7 @@ class SignUpActivity : AppCompatActivity() {
 
         // 액션바에 뒤로가기 버튼
         setSupportActionBar(binding.toolbar)
+        supportActionBar?.title = "회원가입"
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         binding.btnName.setOnClickListener { clickBtnName() } // 닉네임 중복확인

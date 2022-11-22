@@ -18,6 +18,7 @@ class AccountHotelListActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
+        supportActionBar?.title = "주변 숙소찾기"
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         val listAdapter = AccountHotelRecyclerAdapter(this, hotelItems)
