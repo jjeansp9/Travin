@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name"></string>
+    <string name="app_name">Travin</string>
 
     <style name="tabTextSizeBold" parent="TextAppearance.Design.Tab">
         <item name="android:textStyle">bold</item>

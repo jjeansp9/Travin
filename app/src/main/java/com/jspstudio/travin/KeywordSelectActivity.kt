@@ -23,6 +23,7 @@ class KeywordSelectActivity : AppCompatActivity() {
 
         // 액션바에 뒤로가기 버튼 ( 로그인&회원가입 시작화면으로 이동 )
         setSupportActionBar(binding.toolbar)
+        supportActionBar?.title = "여행스타일 키워드"
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         // fab 버튼을 클릭하면 메인 홈화면으로 이동

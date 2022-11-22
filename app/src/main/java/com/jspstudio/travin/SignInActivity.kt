@@ -24,6 +24,7 @@ class SignInActivity : AppCompatActivity() {
 
         // 액션바에 뒤로가기 버튼
         setSupportActionBar(binding.toolbar)
+        supportActionBar?.title = "로그인"
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         loadData()

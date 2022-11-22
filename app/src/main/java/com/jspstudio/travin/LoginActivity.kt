@@ -1,7 +1,9 @@
 package com.jspstudio.travin
 
+import android.Manifest
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -21,21 +23,22 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        // 클릭시 회원가입 화면으로 이동
-        binding.btn.setOnClickListener {
-            val intent: Intent = Intent(this, SignUpActivity::class.java)
-            startActivity(intent)
+        binding.btn.setOnClickListener { moveSignupActivity() } // 회원가입 화면으로 이동
+        binding.btnLogin.setOnClickListener{ moveSigninActivity() } // 로그인 화면으로 이동
+
+        // 외부저장소에 대한 퍼미션 - 사진업로드를 위해 필요 - 2개를 요청해도 외부메모리사용 요청은 하나만 요청함
+        val permissions = arrayOf(
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.ACCESS_MEDIA_LOCATION
+        )
+        if (checkSelfPermission(permissions[0]) == PackageManager.PERMISSION_DENIED) {
+            requestPermissions(permissions, 100) //requestCode는 식별코드라서 아무거나 쓰면됨
         }
-
-        // 클릭시 로그인 화면으로 이동
-        binding.btnLogin.setOnClickListener{
-            val intent: Intent = Intent(this, SignInActivity::class.java)
-            startActivity(intent)
-
-        }
-
-
-
 
     }
+
+    fun moveSignupActivity(){ startActivity(Intent(this, SignUpActivity::class.java)) }
+
+    fun moveSigninActivity(){ startActivity(Intent(this, SignInActivity::class.java)) }
+
 }
