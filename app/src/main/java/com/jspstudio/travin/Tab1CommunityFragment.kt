@@ -6,6 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.DocumentChange
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FirebaseFirestore
 import com.jspstudio.travin.databinding.FragmentTab1CommunityBinding
 import com.jspstudio.travin.databinding.FragmentTab2QuestionBinding
 
@@ -42,6 +45,7 @@ class Tab1CommunityFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewConnect() // 리사이클러뷰 아답터 연결
+        traveler()
         dummyData() // 테스트용 데이터
 
     }
@@ -54,6 +58,37 @@ class Tab1CommunityFragment : Fragment() {
             items3.add(Tab3UsefulInfoItem("안녕하세요 제가 이번에 가본 여행지에 대해 꿀팁을 전수해드리겠습니다.", R.drawable.sydney, "jinsol", "1시간 전"))
             items4.add(Tab4AccompanyItem("질문이 있습니다. 제가 얼마전에 여행을 다녀왔는데 여행지에 대해 궁금한 것이 생겼습니다", R.drawable.test1, "jinsol", "1시간 전"))
             items5.add(Tab5ReviewItem("질문이 있습니다. 제가 얼마전에 여행을 다녀왔는데 여행지에 대해 궁금한 것이 생겼습니다", R.drawable.test1, "jinsol", "1시간 전"))
+        }
+    }
+
+    // 여행스타일이 비슷한 사용자들 이미지url 불러오기
+    fun traveler(){
+        val firebaseFirestore = FirebaseFirestore.getInstance() // 파이어스토어 생성
+        val homeUploadRef = firebaseFirestore.collection("users") // firestore에 있는 homeUploads 라는 이름의 컬렉션을 참조
+
+        homeUploadRef.addSnapshotListener { value, error ->
+            val documentChangeList: List<DocumentChange> = value!!.documentChanges
+            for (documentChange: DocumentChange in documentChangeList) {
+                // 변경된 document의 데이터를 촬영한 스냅샷 얻어오기
+                val snapshot: DocumentSnapshot = documentChange.document
+
+                // document 안에 있는 필드 값들 얻어오기
+                val homeUpload: Map<String, String> = snapshot.data as Map<String, String>
+                val profile = homeUpload["profile"]
+                val nickName = homeUpload["nickname"]
+
+                if(profile == ""){
+                    val item : Tab1CommunityItem = Tab1CommunityItem(R.drawable.profile)
+                    items.add(item)
+                }else{
+                    val item : Tab1CommunityItem = Tab1CommunityItem(profile!!)
+                    items.add(item)
+                }
+
+                // 리사이클러뷰 갱신
+                recycler.adapter?.notifyItemInserted(items.size -1)
+
+            }
         }
     }
 

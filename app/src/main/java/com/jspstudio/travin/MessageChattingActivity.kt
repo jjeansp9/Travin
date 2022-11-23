@@ -94,7 +94,9 @@ class MessageChattingActivity : AppCompatActivity() {
 
 
     fun clickSend(){
-        val nickname = UserDatas.nickname.toString()
+        val getPref = getSharedPreferences("account", AppCompatActivity.MODE_PRIVATE)
+        val nickname = getPref?.getString("nickname", null)
+
         val message = binding.msgChatInput.text.toString()
 
         val calendar : Calendar = Calendar.getInstance() // 현재시간 객체
@@ -111,7 +113,7 @@ class MessageChattingActivity : AppCompatActivity() {
         val chat: MutableMap<String, String> = HashMap() // Object 사용하면 int string 다 가능. <식별자, 값>
         val msg: MutableMap<String, String> = HashMap()
 
-        chat["nickname"] = nickname // ("식별자", 값)
+        chat["nickname"] = nickname.toString() // ("식별자", 값)
         chat["message"] = message
         chat["time"] = time
 
@@ -126,7 +128,7 @@ class MessageChattingActivity : AppCompatActivity() {
         otherChatRef = firebaseFirestore.collection("[msgList]"+otherName) // 상대방 + 내 닉네임의 컬렉션이름
 
         chatRef?.document("$otherName")?.set(msg)
-        otherChatRef?.document(nickname)?.set(chat)
+        otherChatRef?.document(nickname.toString())?.set(chat)
 
         binding.msgChatInput.setText("")
 

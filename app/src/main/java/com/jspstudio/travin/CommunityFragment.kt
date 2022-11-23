@@ -7,14 +7,13 @@ import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayoutMediator
 import com.jspstudio.travin.databinding.FragmentCommunityBinding
+import com.jspstudio.travin.databinding.FragmentHomeBinding
 
 class CommunityFragment : Fragment() {
 
     val tabMenu = arrayOf(" 커뮤니티", "여행 질문", "여행 꿀팁", "여행 동행", "여행 후기 ") // 탭메뉴 이름
 
-    private var mBinding: FragmentCommunityBinding? = null
-    // 매번 null 체크를 할 필요 없이 편의성을 위해 바인딩 변수 재 선언
-    private val binding get() = mBinding!!
+    lateinit var binding: FragmentCommunityBinding
 
     var adapter : CommunityPagerAdapter? = null
 
@@ -23,7 +22,7 @@ class CommunityFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        mBinding = FragmentCommunityBinding.inflate(inflater, container, false)
+        binding = FragmentCommunityBinding.inflate(inflater, container, false)
         return binding.root
     }
 

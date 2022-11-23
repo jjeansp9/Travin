@@ -37,8 +37,10 @@
         android:textColor="@color/black"
         android:textStyle="bold"
         android:textSize="16sp"
-        android:layout_below="@id/account_profile"
+        android:layout_below="@id/account_title"
+        android:layout_toRightOf="@id/account_profile"
         android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
         />
 
     <TextView
@@ -46,16 +48,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/account_name"
+        android:layout_toRightOf="@id/account_profile"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
         android:lines="2"
         android:text="안녕하세요! 반가워요." />
 
+    <Button
+        android:id="@+id/btn_upload"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/account_profile"
+        android:backgroundTint="#EAE9E9"
+        android:text="프로필사진 수정"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
+
     <TextView
         android:id="@+id/account_keyword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/account_aboutme"
+        android:layout_below="@id/btn_upload"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="14dp"
         android:text="홍길동님의 여행스타일"
@@ -71,71 +86,111 @@
         android:layout_below="@id/account_keyword"
         android:layout_marginTop="40dp"/>
 
-    <ImageView
-        android:id="@+id/iv_hotel_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="16dp"
-        android:layout_below="@id/line"
-        android:src="@drawable/ic_hotel"
-        />
-
-    <TextView
-        android:id="@+id/tv_hotel_list"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/hotel_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/line"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="30dp"
-        android:layout_toRightOf="@id/iv_hotel_list"
-        android:text="주변숙소 찾기"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        android:padding="16dp">
 
-    <ImageView
-        android:id="@+id/iv_friend_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_community_select"
-        android:layout_below="@id/iv_hotel_list"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="20dp"/>
 
-    <TextView
-        android:id="@+id/tv_friend_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/iv_hotel_list"
-        android:text="친구목록 보기"
-        android:layout_toRightOf="@id/iv_friend_list"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="8dp"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:textSize="16sp"/>
+        <ImageView
+            android:id="@+id/iv_hotel_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_hotel" />
 
-    <ImageView
-        android:id="@+id/iv_my_upload_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_my_upload"
-        android:layout_below="@id/iv_friend_list"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="20dp"/>
 
-    <TextView
-        android:id="@+id/tv_my_upload_list"
-        android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/tv_hotel_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@id/iv_hotel_list"
+            android:text="주변숙소 찾기"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_right" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/friend_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/iv_friend_list"
-        android:text="내가쓴 글 목록보기"
-        android:layout_toRightOf="@id/iv_friend_list"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="8dp"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:textSize="16sp"/>
+        android:layout_below="@id/hotel_layout"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/iv_friend_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_community_select" />
+
+        <TextView
+            android:id="@+id/tv_friend_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/iv_friend_list"
+            android:text="친구목록 보기"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="8dp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_right" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/my_upload_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/friend_layout"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/iv_my_upload_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_my_upload"/>
+
+        <TextView
+            android:id="@+id/tv_my_upload_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="내가쓴 글 목록보기"
+            android:layout_toRightOf="@id/iv_my_upload_list"
+            android:layout_marginLeft="8dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="16sp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_right" />
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+
 
 </RelativeLayout>

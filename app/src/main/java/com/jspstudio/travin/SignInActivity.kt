@@ -71,6 +71,8 @@ class SignInActivity : AppCompatActivity() {
                 }else if (id+password == UserDatas.id+UserDatas.password){
                     Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
 
+
+
                     // 폰에 회원정보 저장
                     val pref = getSharedPreferences("account", MODE_PRIVATE)
                     val editor = pref.edit()
@@ -87,8 +89,6 @@ class SignInActivity : AppCompatActivity() {
                 }
             } // 회원정보 확인
             if(!idPass){ Toast.makeText(this, "회원정보가 맞지 않습니다", Toast.LENGTH_SHORT).show() }
-
-
         }
 
     // 레트로핏으로 서버에 json형태(연관배열)의 저장된 데이터들 불러오기

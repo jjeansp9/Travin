@@ -100,16 +100,17 @@ class SignUpActivity : AppCompatActivity() {
 
         val userRef: CollectionReference = firebaseFirestore.collection("users") // 컬렉션명 : users
 
+        val sdf: SimpleDateFormat = SimpleDateFormat("yyyyMMddHHmmSS")
+
         // Document 명을 닉네임으로, Field'값'에 이미지경로 url을 저장
         val profile: MutableMap<String, String> = HashMap()
         profile["nickname"] = UserDatas.nickname.toString()
         profile["id"] = UserDatas.id.toString()
         profile["password"] = UserDatas.password.toString()
-        profile["profile"] = R.drawable.profile.toString()
+        profile["profile"] = ""
+        profile["startTime"] = sdf.format(Date())
 
-        val sdf: SimpleDateFormat = SimpleDateFormat("yyyyMMddHHmmSS")
-        val fileName:String = sdf.format(Date()) + "_" + UserDatas.id // 저장될 파일명 : 날짜 + 아이디 + .png
-        userRef.document(fileName).set(profile)
+        userRef.document(UserDatas.id.toString()).set(profile)
 
         // 앱을 처음 실행할때 한번 입력한 회원정보를 폰에 저장 (다시 입력하지 않기위해)
         // 2. SharedPreferences 에 저장
