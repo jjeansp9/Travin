@@ -8,6 +8,6 @@ data class MessageChattingRecyclerItem(
 )
 
 data class MessageFriendRecyclerItem(
-    var profile: Int,
+    var profile: Any,
     var name: String?
 )

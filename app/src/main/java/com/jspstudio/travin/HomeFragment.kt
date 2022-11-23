@@ -205,8 +205,6 @@ class HomeFragment : Fragment() {
                 binding.homeRecycler.adapter?.notifyItemInserted(items.size -1)
                 binding.homeRecycler.scrollToPosition(binding.homeRecycler.adapter!!.itemCount -1)
 
-
-
             }
         }
 

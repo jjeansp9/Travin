@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.DocumentSnapshot
@@ -77,15 +76,15 @@ class MessageFragment : Fragment() {
         val otherPref = context?.getSharedPreferences("otherAccount", AppCompatActivity.MODE_PRIVATE)
         val otherName = otherPref?.getString("nickname", null)
 
-        chatRef = firebaseFirestore.collection("[msgList]"+nickname) // 내 닉네임 + 상대방 닉네임의 컬렉션이름
+        chatRef = firebaseFirestore.collection("[msgList]"+nickname.toString()) // 내 닉네임 + 상대방 닉네임의 컬렉션이름
+
 
         chatRef?.addSnapshotListener { value, error ->
             val documentChangeList : List<DocumentChange> = value!!.documentChanges
+
             for (documentChange : DocumentChange in documentChangeList){
                 // 변경된 document의 데이터를 촬영한 스냅샷 얻어오기
                 val snapshot : DocumentSnapshot = documentChange.document
-
-                val buffer = StringBuffer()
 
                 // document 안에 있는 필드 값들 얻어오기
                 val chatUpload : Map<String, String> = snapshot.data as Map<String, String>
@@ -96,13 +95,14 @@ class MessageFragment : Fragment() {
 
                 val item : MessageRecyclerItem = MessageRecyclerItem(R.drawable.profile,"$nickname", "$message", "$time")
 
+                items.add(item)
                 // 채팅 리사이클러뷰 갱신
                 binding.msgRecycler.adapter?.notifyItemInserted(items.size -1)
                 binding.msgRecycler.scrollToPosition(binding.msgRecycler.adapter!!.itemCount -1)
-                items.clear()
-                items.add(item)
-                binding.msgRecycler.adapter?.notifyDataSetChanged()
+
+
             }
+            binding.msgRecycler.adapter?.notifyDataSetChanged()
         }
     }
 
@@ -123,10 +123,16 @@ class MessageFragment : Fragment() {
                 val profile = homeUpload["profile"]
                 val nickName = homeUpload["nickname"]
 
-                // 데이터 추가
-                val item : MessageFriendRecyclerItem = MessageFriendRecyclerItem(R.drawable.profile, nickName)
 
-                friendItems.add(item)
+
+                if(profile == ""){
+                    val item : MessageFriendRecyclerItem = MessageFriendRecyclerItem(R.drawable.profile, nickName)
+                    friendItems.add(item)
+                }else{
+                    val item : MessageFriendRecyclerItem = MessageFriendRecyclerItem(profile!!, nickName)
+                    friendItems.add(item)
+                }
+
 
                 // 리사이클러뷰 갱신
                 binding.msgRecyclerFriend.adapter?.notifyItemInserted(friendItems.size -1)

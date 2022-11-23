@@ -1,25 +1,22 @@
 package com.jspstudio.travin
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
-import android.net.Uri
+import android.content.SharedPreferences
 import android.os.Bundle
-import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.loader.content.CursorLoader
 import com.bumptech.glide.Glide
 import com.jspstudio.travin.databinding.FragmentAccountBinding
+import java.util.*
 
 class AccountFragment : Fragment() {
 
     lateinit var binding:FragmentAccountBinding
-    lateinit var imgUri:Uri
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,30 +37,28 @@ class AccountFragment : Fragment() {
         binding.accountName.text = "$nickname"
         binding.accountKeyword.text = "${nickname}님의 여행스타일"
 
-        binding.accountProfile.setOnClickListener{uploadProfile()} // 프로필사진 업로드
-        binding.tvHotelList.setOnClickListener { hotelList() } // 호텔 리스트
-        binding.tvFriendList.setOnClickListener { friendList() } // 친구목록 리스트
-        binding.tvMyUploadList.setOnClickListener { myUploadList() } // 내가쓴 글 리스트
+
+        binding.hotelLayout.setOnClickListener { hotelList() } // 호텔 리스트
+        binding.friendLayout.setOnClickListener { friendList() } // 친구목록 리스트
+        binding.myUploadLayout.setOnClickListener { myUploadList() } // 내가쓴 글 리스트
+        binding.btnUpload.setOnClickListener { startActivity(Intent(context,UploadProfileActivity::class.java)) } // 프로필사진 업로드 버튼 ( 프로필사진 수정화면으로 이동 )
+        binding.accountProfile.setOnClickListener{startActivity(Intent(context,UploadProfileActivity::class.java))} // 프로필사진을 클릭하면 프로필사진 수정화면으로 이동
 
     }
 
-    // 프로필이미지를 업로드하는 메소드
-    private fun uploadProfile(){
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = "image/*"
-        resultLauncher.launch(intent)
+    override fun onResume() {
+        super.onResume()
+        //completeUploadProfile()
+        loadProfile()
+    }
+
+    fun loadProfile(){
+        val pref: SharedPreferences = view?.context!!.getSharedPreferences("account", Context.MODE_PRIVATE)
+        UserDatas.profileUrl = pref.getString("profileUrl", null)
+        if (UserDatas.profileUrl != null){ Glide.with(view?.context!!).load(UserDatas.profileUrl).into(binding.accountProfile) }
 
     }
 
-    // 사진 업로드 관련 코드
-    var resultLauncher = registerForActivityResult<Intent, ActivityResult>(
-        ActivityResultContracts.StartActivityForResult()
-    ) { result ->
-        if (result.resultCode != AppCompatActivity.RESULT_CANCELED) {
-            imgUri = result.data!!.data!!
-            Glide.with(this@AccountFragment).load(imgUri).into(binding.accountProfile)
-        }
-    }
 
     // 호텔 리스트 메소드
     private fun hotelList(){
@@ -77,4 +72,6 @@ class AccountFragment : Fragment() {
     private fun myUploadList(){
 
     }
+
+
 }
