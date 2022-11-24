@@ -1,7 +1,7 @@
 package com.jspstudio.travin
 
 data class HomeItem(
-    var homeProfile: Int,
+    var homeProfile: Any,
     var homeName:String?,
     var homeLocation:String,
     var homeTimeBefore:String?,
