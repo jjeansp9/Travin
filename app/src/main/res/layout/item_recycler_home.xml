@@ -7,19 +7,19 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iv_home_profile"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginBottom="6dp"
         android:layout_marginTop="8dp"
-        android:src="@drawable/ic_profile" />
+        android:layout_marginBottom="6dp"
+        android:src="@drawable/profile"/>
 
     <TextView
         android:id="@+id/tv_home_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="6dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="6dp"
         android:layout_marginBottom="6dp"
         android:layout_toEndOf="@id/iv_home_profile"
         android:text="홍길동"

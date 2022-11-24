@@ -55,6 +55,8 @@ class AccountFragment : Fragment() {
     fun loadProfile(){
         val pref: SharedPreferences = view?.context!!.getSharedPreferences("account", Context.MODE_PRIVATE)
         UserDatas.profileUrl = pref.getString("profileUrl", null)
+
+        // 유저데이터가 비어있지 않은 경우 등록한 프로필사진으로 이미지 설정
         if (UserDatas.profileUrl != null){ Glide.with(view?.context!!).load(UserDatas.profileUrl).into(binding.accountProfile) }
 
     }

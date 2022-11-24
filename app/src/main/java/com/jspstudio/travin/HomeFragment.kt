@@ -2,6 +2,7 @@ package com.jspstudio.travin
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -112,6 +113,7 @@ class HomeFragment : Fragment() {
                         val comment = homeUpload["comment"]
                         val time = homeUpload["time"]
 
+
                         // 데이터 추가
                         val item : CommentRecyclerItem = CommentRecyclerItem(R.drawable.profile,nickname, comment, time)
 
@@ -167,7 +169,8 @@ class HomeFragment : Fragment() {
 
     fun loadDataFromHomeUpload(){
         val firebaseFirestore = FirebaseFirestore.getInstance() // 파이어스토어 생성
-        val homeUploadRef = firebaseFirestore.collection("homeUploads") // firestore에 있는 homeUploads 라는 이름의 컬렉션을 참조
+        val profileRef = firebaseFirestore.collection("users") // firestore에 있는 homeUploads 라는 이름의 컬렉션을 참조
+        val homeUploadRef = firebaseFirestore.collection("homeUploads")
 
         homeUploadRef.addSnapshotListener { value, error ->
             val documentChangeList : List<DocumentChange> = value!!.documentChanges
@@ -175,27 +178,45 @@ class HomeFragment : Fragment() {
                 // 변경된 document의 데이터를 촬영한 스냅샷 얻어오기
                 val snapshot : DocumentSnapshot = documentChange.document
 
+                val pref: SharedPreferences = view?.context!!.getSharedPreferences("account", Context.MODE_PRIVATE)
+                UserDatas.profileUrl = pref.getString("profileUrl", null)
+
                 // document 안에 있는 필드 값들 얻어오기
                 val homeUpload : Map<String, String> = snapshot.data as Map<String, String>
                 val nickName = homeUpload["homeUploadNickname"]
                 val uploadImg = homeUpload["homeUploadImgUrl"]
                 val uploadContents = homeUpload["homeUploadContents"]
                 val uploadTime = homeUpload["homeUploadTime"]
+                val uploadProfile = UserDatas.profileUrl
 
-                // 홈 업로드 글 데이터 추가
-                val item : HomeItem = HomeItem(R.drawable.ic_profile,
-                    nickName,
-                    "서울특별시 서초구",
-                    uploadTime,
-                    uploadImg,
-                    R.drawable.ic_favorite,
-                    R.drawable.ic_comment,
-                    uploadContents)
+                if(uploadProfile == null){
+
+                    val item : HomeItem = HomeItem(R.drawable.ic_profile,
+                        nickName,
+                        "서울특별시 서초구",
+                        uploadTime,
+                        uploadImg,
+                        R.drawable.ic_favorite,
+                        R.drawable.ic_comment,
+                        uploadContents)
+                    items.add(item)
+                }else{
+                    val item : HomeItem = HomeItem(uploadProfile!!,
+                        nickName,
+                        "서울특별시 서초구",
+                        uploadTime,
+                        uploadImg,
+                        R.drawable.ic_favorite,
+                        R.drawable.ic_comment,
+                        uploadContents)
+                    items.add(item)
+                }
+
+
 
                 // 홈 오늘의 인기글 데이터추가
                 val popularItem : HomePopularItem = HomePopularItem(uploadImg)
 
-                items.add(item)
                 popularItems.add(popularItem)
 
                 // 오늘의인기글 홈 리사이클러뷰 갱신
