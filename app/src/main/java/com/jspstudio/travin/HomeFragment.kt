@@ -50,15 +50,15 @@ class HomeFragment : Fragment() {
         binding.homePopularRecycler.adapter = HomePopularRecyclerAdapter(view.context, popularItems) // 홈화면 오늘의 인기글 어댑터연결
         binding.homeRecycler.adapter = listAdapter // 업로드글 연결
 
-
-
-        loadDataFromHomeUpload() // 업로드된 데이터들 불러오기
-
         // 플로팅버튼 클릭하면 새 게시물 업로드화면 열림
         binding.fabHomeAddWrite.setOnClickListener { clickFabTabMenu(0) }
 
         clickUploadData()
+    }
 
+    override fun onResume() {
+        super.onResume()
+        loadDataFromHomeUpload() // 업로드된 데이터들 불러오기
     }
 
     // 업로드글들 각 아이템마다 클릭할때 작동
@@ -187,11 +187,12 @@ class HomeFragment : Fragment() {
                 val uploadImg = homeUpload["homeUploadImgUrl"]
                 val uploadContents = homeUpload["homeUploadContents"]
                 val uploadTime = homeUpload["homeUploadTime"]
-                val uploadProfile = UserDatas.profileUrl
+                val uploadProfile = homeUpload["homeUploadProfileUrl"]
 
-                if(uploadProfile == null){
+                // 프로필사진 등록하지 않은경우 기본이미지로, 등록했다면 등록한 프로필이미지로 보여주기
+                if(uploadProfile == "null"){
 
-                    val item : HomeItem = HomeItem(R.drawable.ic_profile,
+                    val item : HomeItem = HomeItem(R.drawable.profile,
                         nickName,
                         "서울특별시 서초구",
                         uploadTime,
