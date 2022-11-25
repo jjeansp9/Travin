@@ -1,6 +1,8 @@
 package com.jspstudio.travin
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -88,6 +90,9 @@ class UploadActivity : AppCompatActivity() {
         val pref = getSharedPreferences("account", MODE_PRIVATE)
         UserDatas.nickname = pref.getString("nickname", null)
 
+        val profileRef: SharedPreferences = getSharedPreferences("account", Context.MODE_PRIVATE)
+        UserDatas.profileUrl = profileRef.getString("profileUrl", null)
+
         UploadDatas.uploadContents= binding.etContents.text.toString() // 홈화면 업로드글 내용
 
         val sdf:SimpleDateFormat = SimpleDateFormat("yyyyMMddHHmmss")
@@ -99,6 +104,8 @@ class UploadActivity : AppCompatActivity() {
         uploadRef.putFile(imgUri).addOnSuccessListener {
             uploadRef.downloadUrl.addOnSuccessListener {
                 UploadDatas.uploadImg = it.toString()
+
+
 
                 val firebaseFireStore: FirebaseFirestore = FirebaseFirestore.getInstance() // firestore
                 val homeUploadRef = firebaseFireStore.collection("homeUploads") // 파이어스토어 컬렉션 생성 : homeUploads
@@ -116,6 +123,7 @@ class UploadActivity : AppCompatActivity() {
                 homeUpload["homeUploadHour"] = timeHour // "필드명" = 업로드 시간
                 homeUpload["homeUploadMinute"] = timeMinute // "필드명" = 업로드 분
                 homeUpload["homeUploadSecond"] = timeSecond // "필드명" = 업로드 초
+                homeUpload["homeUploadProfileUrl"] = UserDatas.profileUrl.toString()
 
                 homeUploadRef.document( sdf.format(Date()) + "_" + UserDatas.nickname!! ).set(homeUpload) // 파일명 : 날짜 + 닉네임
                 Toast.makeText(this, "업로드 성공", Toast.LENGTH_SHORT).show()
