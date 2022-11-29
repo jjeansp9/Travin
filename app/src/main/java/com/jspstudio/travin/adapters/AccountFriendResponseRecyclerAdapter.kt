@@ -1,4 +1,4 @@
-package com.jspstudio.travin
+package com.jspstudio.travin.adapters
 
 import android.content.Context
 import android.view.LayoutInflater

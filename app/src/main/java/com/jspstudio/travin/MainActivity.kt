@@ -1,6 +1,7 @@
 package com.jspstudio.travin
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -31,6 +32,7 @@ class MainActivity : AppCompatActivity() {
 
 
         fragments.add(0,HomeFragment()) // 처음에 보여질 fragment 추가
+
         for(i in 1..3) fragments.add(i, Fragment())
 
         //프레그먼트 관리자 객체 소환
@@ -57,6 +59,7 @@ class MainActivity : AppCompatActivity() {
                             com = true
                         }
                         tran.show(fragments[1])
+                        Toast.makeText(this, ""+fragments.size, Toast.LENGTH_SHORT).show()
                     }
 
                     R.id.menu_bnv_message -> {
@@ -66,7 +69,7 @@ class MainActivity : AppCompatActivity() {
                             msg = true
                         }
                         tran.show(fragments[2])
-
+                        Toast.makeText(this, ""+fragments.size, Toast.LENGTH_SHORT).show()
                     }
 
                     R.id.menu_bnv_profile -> {
@@ -76,7 +79,7 @@ class MainActivity : AppCompatActivity() {
                             pro = true
                         }
                         tran.show(fragments[3])
-
+                        Toast.makeText(this, ""+fragments.size, Toast.LENGTH_SHORT).show()
                     }
                 }
 

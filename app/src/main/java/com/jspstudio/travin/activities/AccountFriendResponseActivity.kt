@@ -1,4 +1,4 @@
-package com.jspstudio.travin
+package com.jspstudio.travin.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
