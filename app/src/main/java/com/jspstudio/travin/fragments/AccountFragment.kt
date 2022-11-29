@@ -11,7 +11,11 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.jspstudio.travin.activities.AccountFriendListActivity
+import com.jspstudio.travin.activities.AccountHotelListActivity
+import com.jspstudio.travin.activities.UploadProfileActivity
 import com.jspstudio.travin.databinding.FragmentAccountBinding
+import com.jspstudio.travin.model.UserDatas
 import java.util.*
 
 class AccountFragment : Fragment() {
@@ -41,7 +45,7 @@ class AccountFragment : Fragment() {
         binding.hotelLayout.setOnClickListener { hotelList() } // 호텔 리스트
         binding.friendLayout.setOnClickListener { friendList() } // 친구목록 리스트
         binding.myUploadLayout.setOnClickListener { myUploadList() } // 내가쓴 글 리스트
-        binding.btnUpload.setOnClickListener { startActivity(Intent(context,UploadProfileActivity::class.java)) } // 프로필사진 업로드 버튼 ( 프로필사진 수정화면으로 이동 )
+        binding.btnUpload.setOnClickListener { startActivity(Intent(context, UploadProfileActivity::class.java)) } // 프로필사진 업로드 버튼 ( 프로필사진 수정화면으로 이동 )
         binding.accountProfile.setOnClickListener{startActivity(Intent(context,UploadProfileActivity::class.java))} // 프로필사진을 클릭하면 프로필사진 수정화면으로 이동
 
     }
