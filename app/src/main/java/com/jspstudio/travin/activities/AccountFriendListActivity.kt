@@ -9,6 +9,7 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
+import com.jspstudio.travin.R
 import com.jspstudio.travin.adapters.AccountFriendListRcyclerAdapter
 import com.jspstudio.travin.databinding.ActivityAccountFriendListBinding
 import com.jspstudio.travin.model.AccountFriendListItem

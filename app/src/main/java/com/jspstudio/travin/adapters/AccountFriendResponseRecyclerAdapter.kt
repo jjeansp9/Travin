@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.jspstudio.travin.R
 import com.jspstudio.travin.databinding.ItemRecyclerAccountResponseFriendBinding
+import com.jspstudio.travin.model.AccountFriendResponseItem
 
 class AccountFriendResponseRecyclerAdapter constructor(val context: Context, var responseItems: MutableList<AccountFriendResponseItem>): RecyclerView.Adapter<AccountFriendResponseRecyclerAdapter.VH>(){
     inner class VH constructor(itemView: View) : RecyclerView.ViewHolder(itemView){

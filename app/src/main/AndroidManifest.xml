@@ -19,53 +19,53 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".UploadProfileActivity"
+            android:name=".activities.UploadProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".AccountFriendResponseActivity"
+            android:name=".activities.AccountFriendResponseActivity"
             android:exported="false" />
         <activity
-            android:name=".AccountHotelListActivity"
+            android:name=".activities.AccountHotelListActivity"
             android:exported="false" />
         <activity
-            android:name=".AccountFriendListActivity"
+            android:name=".activities.AccountFriendListActivity"
             android:exported="false" />
         <activity
-            android:name=".UploadActivity"
+            android:name=".activities.UploadActivity"
             android:exported="false" />
         <activity
-            android:name=".MessageChattingActivity"
+            android:name=".activities.MessageChattingActivity"
             android:exported="false" />
         <activity
-            android:name=".AccountFragment"
+            android:name=".fragments.AccountFragment"
             android:exported="false" />
         <activity
-            android:name=".MessageFragment"
+            android:name=".fragments.MessageFragment"
             android:exported="false" />
         <activity
-            android:name=".CommunityFragment"
+            android:name=".fragments.CommunityFragment"
             android:exported="false" />
         <activity
-            android:name=".HomeFragment"
+            android:name=".fragments.HomeFragment"
             android:exported="false" />
         <activity
-            android:name=".KeywordSelectActivity"
+            android:name=".activities.KeywordSelectActivity"
             android:exported="false" />
         <activity
-            android:name=".SignInActivity"
+            android:name=".activities.SignInActivity"
             android:exported="false" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".activities.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".activities.LoginActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize">
             <meta-data
@@ -73,7 +73,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".IntroActivity"
+            android:name=".activities.IntroActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
