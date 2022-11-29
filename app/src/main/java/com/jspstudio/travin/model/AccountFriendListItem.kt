@@ -1,4 +1,4 @@
-package com.jspstudio.travin
+package com.jspstudio.travin.model
 
 data class AccountFriendListItem (
     var profile: Int,

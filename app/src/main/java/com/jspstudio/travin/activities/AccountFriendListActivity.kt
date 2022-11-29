@@ -1,4 +1,4 @@
-package com.jspstudio.travin
+package com.jspstudio.travin.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,7 +9,9 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
+import com.jspstudio.travin.adapters.AccountFriendListRcyclerAdapter
 import com.jspstudio.travin.databinding.ActivityAccountFriendListBinding
+import com.jspstudio.travin.model.AccountFriendListItem
 
 class AccountFriendListActivity : AppCompatActivity() {
 

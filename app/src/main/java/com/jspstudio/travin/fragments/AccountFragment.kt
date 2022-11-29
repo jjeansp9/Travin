@@ -1,4 +1,4 @@
-package com.jspstudio.travin
+package com.jspstudio.travin.fragments
 
 import android.annotation.SuppressLint
 import android.content.Context

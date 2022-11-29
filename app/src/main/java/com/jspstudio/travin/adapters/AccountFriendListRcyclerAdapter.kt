@@ -1,4 +1,4 @@
-package com.jspstudio.travin
+package com.jspstudio.travin.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.jspstudio.travin.databinding.ItemRecyclerAccountFriendListBinding
+import com.jspstudio.travin.model.AccountFriendListItem
 
 class AccountFriendListRcyclerAdapter constructor(val context: Context, var friendListItem: MutableList<AccountFriendListItem>): RecyclerView.Adapter<AccountFriendListRcyclerAdapter.VH>(){
     inner class VH constructor(itemView: View): RecyclerView.ViewHolder(itemView){
