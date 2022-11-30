@@ -23,8 +23,11 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.btn.setOnClickListener { moveSignupActivity() } // 회원가입 화면으로 이동
-        binding.btnLogin.setOnClickListener{ moveSigninActivity() } // 로그인 화면으로 이동
+        // 회원가입 화면으로 이동
+        binding.btn.setOnClickListener { startActivity(Intent(this, SignUpActivity::class.java)) }
+
+        // 로그인 화면으로 이동
+        binding.btnLogin.setOnClickListener{ startActivity(Intent(this, SignInActivity::class.java)) }
 
         // 외부저장소에 대한 퍼미션 - 사진업로드를 위해 필요 - 2개를 요청해도 외부메모리사용 요청은 하나만 요청함
         val permissions = arrayOf(
@@ -36,9 +39,4 @@ class LoginActivity : AppCompatActivity() {
         }
 
     }
-
-    fun moveSignupActivity(){ startActivity(Intent(this, SignUpActivity::class.java)) }
-
-    fun moveSigninActivity(){ startActivity(Intent(this, SignInActivity::class.java)) }
-
 }

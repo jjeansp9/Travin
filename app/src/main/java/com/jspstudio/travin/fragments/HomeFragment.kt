@@ -15,6 +15,7 @@ import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.jspstudio.travin.R
+import com.jspstudio.travin.activities.AccountOtherActivity
 import com.jspstudio.travin.activities.UploadActivity
 import com.jspstudio.travin.adapters.CommentRecyclerAdapter
 import com.jspstudio.travin.adapters.HomePopularRecyclerAdapter
@@ -41,9 +42,6 @@ class HomeFragment : Fragment() {
 
     val listAdapter by lazy { context?.let { HomeRecyclerAdapter(it, items) } }
     val commentAdapter by lazy { context?.let { CommentRecyclerAdapter(it, commentItems) } }
-
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -76,7 +74,7 @@ class HomeFragment : Fragment() {
 
             // 이름
             override fun nameClick(v: View, position: Int) {
-
+                startActivity(Intent(context, AccountOtherActivity::class.java))
             }
 
             // 위치
@@ -86,8 +84,51 @@ class HomeFragment : Fragment() {
 
             // 내용
             override fun contentsClick(v: View, position: Int) {
+                val commentBinding: BsCommentBinding = BsCommentBinding.inflate(layoutInflater) // bs_comment.xml 바인딩
+                val bottomSheetDialog = BottomSheetDialog(view!!.context)
+                bottomSheetDialog.setContentView(commentBinding.root) // 다이얼로그에 bs_comment.xml 바인딩해서 연결
+                commentBinding.commentRecycler.adapter = commentAdapter // 댓글창 어댑터연결
+                commentItems.clear()
+
+                bottomSheetDialog.behavior?.isDraggable = false // 드래그할때 바텀시트 크기는 고정되게 설정 (드래그 안되게 설정)
+                bottomSheetDialog.behavior?.maxHeight = 1500
+                bottomSheetDialog.behavior?.peekHeight = 1500
+                bottomSheetDialog.show()
+
+                // 댓글달린 데이터 불러오기
+                homeRef = firebaseFirestore.collection("[homeComment]"+items[position].homeName) // 내 닉네임 + 상대방 닉네임의 컬렉션이름
+
+                homeRef?.addSnapshotListener { value, error ->
+                    val documentChangeList : List<DocumentChange> = value!!.documentChanges
+                    for (documentChange : DocumentChange in documentChangeList){
+                        // 변경된 document의 데이터를 촬영한 스냅샷 얻어오기
+                        val snapshot : DocumentSnapshot = documentChange.document
+
+                        // document 안에 있는 필드 값들 얻어오기
+                        val homeUpload : Map<String, String> = snapshot.data as Map<String, String>
+                        val nickname = homeUpload["nickname"]
+                        val comment = homeUpload["comment"]
+                        val time = homeUpload["time"]
+
+
+                        // 데이터 추가
+                        val item : CommentRecyclerItem = CommentRecyclerItem(R.drawable.profile,nickname, comment, time)
+
+                        commentItems.add(item)
+                        commentBinding.commentRecycler.adapter?.notifyDataSetChanged()
+
+                        // 리사이클러뷰 갱신
+                        commentBinding.commentRecycler.adapter?.notifyItemInserted(commentItems.size -1)
+                        commentBinding.commentRecycler.scrollToPosition(commentBinding.commentRecycler.adapter!!.itemCount -1)
+                    }
+                }
+            }
+            
+            // 업로드 사진
+            override fun pictureClick(v: View, position: Int) {
 
             }
+
 
             // 좋아요
             override fun favoriteClick(v: View, position: Int) {
@@ -242,6 +283,7 @@ class HomeFragment : Fragment() {
     }
 
 }
+
 
 
 

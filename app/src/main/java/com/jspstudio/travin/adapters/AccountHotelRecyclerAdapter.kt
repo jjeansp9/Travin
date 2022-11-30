@@ -41,7 +41,6 @@ class AccountHotelRecyclerAdapter constructor(val context: Context, var hotelIte
         }
 
         holder.binding.tvHotelTitle.text = hotelItems[position].hotelName // 숙소이름
-        holder.binding.tvMsg.text = hotelItems[position].hotelMessage // 숙소내용
         holder.binding.tvPrice.text = hotelItems[position].hotelPrice // 숙소가격
 
         Glide.with(context).load(hotelItems[position].hotelImage).into(holder.binding.iv) // 숙소 이미지

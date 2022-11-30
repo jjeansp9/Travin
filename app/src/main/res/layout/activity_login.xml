@@ -85,8 +85,11 @@
         android:layout_height="48dp"
         android:layout_below="@id/kakao_logo_box"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/naver_logo"
-        android:layout_margin="8dp"/>
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/naver_logo" />
 
     <ImageView
         android:id="@+id/facebook_login"

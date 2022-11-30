@@ -27,8 +27,6 @@ class AccountHotelListActivity : AppCompatActivity() {
         val listAdapter = AccountHotelRecyclerAdapter(this, hotelItems)
         binding.hotelListRecycler.adapter = listAdapter // 호텔리스트 리사이클러뷰에 아답터연결
 
-        binding.hotelListRecycler.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL)) // 리사이클러뷰 구분선
-
         // 호텔리스트 인덱스 클릭반응
         listAdapter.setItemClickListener(object : AccountHotelRecyclerAdapter.OnItemClickListener{
             override fun onClick(v: View, position: Int) {
@@ -41,10 +39,10 @@ class AccountHotelListActivity : AppCompatActivity() {
     }
 
     fun testData(){
-        for (i in 0..10){
-            hotelItems.add(AccountHotelItem("호텔이름", "호텔 소개", "2000원", R.drawable.newyork))
-            hotelItems.add(AccountHotelItem("호텔", "호텔 소개", "2000원", R.drawable.paris))
-            hotelItems.add(AccountHotelItem("숙소", "호텔 소개", "2000원", R.drawable.sydney))
+        for (i in 0..30){
+            hotelItems.add(AccountHotelItem("호텔이름", "2000원", R.drawable.newyork))
+            hotelItems.add(AccountHotelItem("호텔", "2000원", R.drawable.paris))
+            hotelItems.add(AccountHotelItem("숙소", "2000원", R.drawable.sydney))
         }
     }
 

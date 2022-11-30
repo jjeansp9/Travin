@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
                             com = true
                         }
                         tran.show(fragments[1])
-                        Toast.makeText(this, ""+fragments.size, Toast.LENGTH_SHORT).show()
+
                     }
 
                     R.id.menu_bnv_message -> {
@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
                             msg = true
                         }
                         tran.show(fragments[2])
-                        Toast.makeText(this, ""+fragments.size, Toast.LENGTH_SHORT).show()
+
                     }
 
                     R.id.menu_bnv_profile -> {
@@ -84,7 +84,7 @@ class MainActivity : AppCompatActivity() {
                             pro = true
                         }
                         tran.show(fragments[3])
-                        Toast.makeText(this, ""+fragments.size, Toast.LENGTH_SHORT).show()
+
                     }
                 }
 

@@ -25,6 +25,7 @@ class HomeRecyclerAdapter constructor(val context: Context, var homeItems:Mutabl
         fun contentsClick(v: View, position: Int)
         fun commentClick(v: View, position: Int)
         fun favoriteClick(v: View, position: Int)
+        fun pictureClick(v: View, position: Int)
     }
     // (3) 외부에서 클릭 시 이벤트 설정
     fun setItemClickListener(onItemClickListener: OnItemClickListener) {
@@ -47,6 +48,7 @@ class HomeRecyclerAdapter constructor(val context: Context, var homeItems:Mutabl
         holder.binding.tvHomeContents.setOnClickListener { itemClickListener.contentsClick(it, position) }
         holder.binding.icHomeComment.setOnClickListener { itemClickListener.commentClick(it, position) }
         holder.binding.icHomeFavorite.setOnClickListener { itemClickListener.favoriteClick(it, position) }
+        holder.binding.ivHomePicture.setOnClickListener { itemClickListener.pictureClick(it, position) }
 
         holder.binding.tvHomeName.text = homeItems[position].homeName // 글 작성자 이름
         holder.binding.tvHomeLocation.text = homeItems[position].homeLocation // 글 작성자 위치
