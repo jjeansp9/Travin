@@ -59,7 +59,6 @@ class CommunityFragment : Fragment() {
                     R.id.menu_accompany_upload -> activity?.let { clickFabTabMenu(3) } // 클릭시 여행동행 업로드화면으로 전환
                     R.id.menu_review_upload -> activity?.let { clickFabTabMenu(4) } // 클릭시 여행후기 업로드화면으로 전환
 
-
                     else->{}
 
                 }

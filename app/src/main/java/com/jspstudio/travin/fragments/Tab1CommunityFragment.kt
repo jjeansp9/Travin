@@ -53,10 +53,11 @@ class Tab1CommunityFragment : Fragment() {
 
     }
 
+
+
     // 테스트용 데이터
     fun dummyData(){
-        for(i in 0..30){ // 제어변수를 만드는 var키워드 없음
-            items.add(Tab1CommunityItem(R.drawable.profile))
+        for(i in 0..30){
             items2.add(Tab2QuestionItem("안녕하세요 제가 이번에 가본 여행지에 대해 꿀팁을 전수해드리겠습니다.", R.drawable.sydney, "jinsol", "1시간 전"))
             items3.add(Tab3UsefulInfoItem("안녕하세요 제가 이번에 가본 여행지에 대해 꿀팁을 전수해드리겠습니다.", R.drawable.sydney, "jinsol", "1시간 전"))
             items4.add(Tab4AccompanyItem("질문이 있습니다. 제가 얼마전에 여행을 다녀왔는데 여행지에 대해 궁금한 것이 생겼습니다", R.drawable.test1, "jinsol", "1시간 전"))
