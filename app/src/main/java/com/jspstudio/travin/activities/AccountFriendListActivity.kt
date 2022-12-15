@@ -35,7 +35,7 @@ class AccountFriendListActivity : AppCompatActivity() {
 
         binding.responseFriendList.setOnClickListener{click() }
         loadFriendList() // 친구목록 데이터 불러오기
-        clickFriendList() //
+        clickFriend() // 해당 친구를 클릭하면 채팅화면 오픈
 
     }
 
@@ -78,7 +78,7 @@ class AccountFriendListActivity : AppCompatActivity() {
         }
     }
 
-    fun clickFriendList(){
+    fun clickFriend(){
         listAdapter?.setItemClickListener (object : AccountFriendListRcyclerAdapter.OnItemClickListener{
             override fun onClick(v: View, position: Int) {
 

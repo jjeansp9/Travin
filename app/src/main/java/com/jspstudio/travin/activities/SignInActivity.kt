@@ -28,7 +28,7 @@ class SignInActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.title = "로그인"
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-
+        supportActionBar
         loadData()
 
 

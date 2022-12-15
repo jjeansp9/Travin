@@ -56,15 +56,17 @@ class UploadProfileActivity : AppCompatActivity() {
         val pref = getSharedPreferences("account", AppCompatActivity.MODE_PRIVATE)
         UserDatas.nickname = pref?.getString("nickname", null)
 
-        val firebaseStorage = FirebaseStorage.getInstance() // storage
-        val profileRef: StorageReference = firebaseStorage.getReference("profileImg/${UserDatas.nickname.toString()}") // 스토리지 컬렉션이름 : homeUpload
+        val firebaseStorage = FirebaseStorage.getInstance() // storage 객체생성
+
+        // getReference를 사용하여 profileImg의 폴더를 만들고 유저닉네임이름으로 문서를 만들고 사진을 저장합니다
+        val profileRef: StorageReference = firebaseStorage.getReference("profileImg/${UserDatas.nickname.toString()}")
 
         profileRef.putFile(imgUri).addOnSuccessListener {
             profileRef.downloadUrl.addOnSuccessListener {
                 UserDatas.profileUrl = it.toString()
 
                 val firebaseFireStore: FirebaseFirestore = FirebaseFirestore.getInstance() // firestore
-                val profileRef = firebaseFireStore.collection("users") // 파이어스토어 컬렉션 생성 : homeUploads
+                val profileRef = firebaseFireStore.collection("users") // 파이어스토어 컬렉션 : users
 
                 val sdf: SimpleDateFormat = SimpleDateFormat("yyyyMMddHHmmSS")
                 // Document 명을 닉네임으로, Field'값'에 이미지경로 url을 저장
