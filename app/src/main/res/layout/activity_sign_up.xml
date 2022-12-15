@@ -53,6 +53,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginTop="110dp"
         android:layout_marginRight="20dp"
+        android:textColor="@color/white"
         android:backgroundTint="@color/btn"
         android:text="중복 확인" />
 
@@ -92,6 +93,7 @@
         android:layout_marginTop="248dp"
         android:layout_marginRight="20dp"
         android:backgroundTint="@color/btn"
+        android:textColor="@color/white"
         android:text="중복 확인" />
 
     <TextView
@@ -145,6 +147,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:backgroundTint="@color/black"
+        android:textColor="@color/white"
         android:padding="8dp"
         android:text="가입하기"
         android:textSize="18sp" />

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignInActivity">
+    tools:context=".activities.SignInActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar_layout"
@@ -91,6 +91,7 @@
         android:layout_marginBottom="20dp"
         android:backgroundTint="@color/black"
         android:padding="8dp"
+        android:textColor="@color/white"
         android:text="로그인하기"
         android:textSize="18sp" />
 

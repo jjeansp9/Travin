@@ -26,7 +26,6 @@ class MessageChattingActivity : AppCompatActivity() {
     var otherChatRef : CollectionReference? = null
     var num: Int= 0
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)

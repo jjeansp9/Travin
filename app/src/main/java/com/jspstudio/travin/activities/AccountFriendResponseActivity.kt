@@ -73,7 +73,6 @@ class AccountFriendResponseActivity : AppCompatActivity() {
                 binding.responseFriendRecycler.adapter?.notifyItemInserted(items.size -1)
                 binding.responseFriendRecycler.scrollToPosition(binding.responseFriendRecycler.adapter!!.itemCount -1)
 
-                items.clear()
                 items.add(item)
 
                 binding.responseFriendRecycler.adapter?.notifyDataSetChanged()
