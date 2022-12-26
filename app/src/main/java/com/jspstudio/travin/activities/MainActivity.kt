@@ -16,6 +16,8 @@ import com.jspstudio.travin.fragments.MessageFragment
 
 class MainActivity : AppCompatActivity() {
 
+    var tokenValue:String= "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"
+
     // 프래그먼트 생성했는지 여부 ( 생성했을 시 true로 설정. true인 경우 더이상 프래그먼트 생성 불가능 )
     var com : Boolean = false
     var msg : Boolean = false
