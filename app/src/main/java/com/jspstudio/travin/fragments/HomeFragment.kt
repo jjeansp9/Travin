@@ -33,8 +33,8 @@ class HomeFragment : Fragment() {
 
     lateinit var binding:FragmentHomeBinding
 
-    var popularItems: MutableList<HomePopularItem> = mutableListOf() // 오늘의 인기글 아이템
-    var items: MutableList<HomeItem> = mutableListOf() // 홈화면 업로드한 글 아이템
+    var popularItems: MutableList<HomePopularItem> = mutableListOf() // 오늘의 인기글 데이터
+    var items: MutableList<HomeItem> = mutableListOf() // 홈화면 업로드한 글 데이터
     var commentItems: MutableList<CommentRecyclerItem> = mutableListOf() // 댓글 아이템
 
     var homeRef : CollectionReference? = null
