@@ -15,6 +15,7 @@ import com.jspstudio.travin.adapters.AccountFriendResponseRecyclerAdapter
 import com.jspstudio.travin.databinding.ActivityAccountFriendResponseBinding
 import com.jspstudio.travin.model.AccountFriendResponseItem
 import com.jspstudio.travin.model.UserDatas
+import com.jspstudio.travin.network.G
 import java.util.HashMap
 
 
@@ -54,7 +55,9 @@ class AccountFriendResponseActivity : AppCompatActivity() {
     // 나에게 친구요청한 유저들 불러오기
     fun loadRequestList(){
 
-        val nickname = UserDatas.nickname.toString()
+        val pref = getSharedPreferences("account", AppCompatActivity.MODE_PRIVATE)
+        val nickname = pref?.getString("nickname", null)
+
         requestRef = firebaseFirestore.collection("[responseList]$nickname") // 내 닉네임 + 상대방 닉네임의 컬렉션이름
 
         requestRef?.addSnapshotListener { value, error ->

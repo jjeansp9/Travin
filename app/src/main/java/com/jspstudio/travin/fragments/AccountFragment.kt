@@ -16,6 +16,7 @@ import com.jspstudio.travin.activities.AccountHotelListActivity
 import com.jspstudio.travin.activities.UploadProfileActivity
 import com.jspstudio.travin.databinding.FragmentAccountBinding
 import com.jspstudio.travin.model.UserDatas
+import com.jspstudio.travin.network.G
 import java.util.*
 
 class AccountFragment : Fragment() {
@@ -38,9 +39,8 @@ class AccountFragment : Fragment() {
         val pref = context?.getSharedPreferences("account", AppCompatActivity.MODE_PRIVATE)
         val nickname = pref?.getString("nickname", null)
 
-        binding.accountName.text = "$nickname"
+        binding.accountName.text = nickname
         binding.accountKeyword.text = "${nickname}님의 여행스타일"
-
 
         binding.hotelLayout.setOnClickListener { hotelList() } // 호텔 리스트
         binding.friendLayout.setOnClickListener { friendList() } // 친구목록 리스트

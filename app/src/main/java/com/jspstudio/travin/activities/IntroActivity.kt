@@ -11,6 +11,8 @@ class IntroActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_intro)
 
+        val token = "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"
+
         Handler().postDelayed({
             val intent: Intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)

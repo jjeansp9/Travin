@@ -8,7 +8,9 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.jspstudio.travin.R
 import com.jspstudio.travin.databinding.ActivitySignUpBinding
+import com.jspstudio.travin.model.UserData
 import com.jspstudio.travin.model.UserDatas
+import com.jspstudio.travin.network.G
 import com.jspstudio.travin.network.RetrofitSignUpHelper
 import com.jspstudio.travin.network.RetrofitSignUpService
 import retrofit2.Call
