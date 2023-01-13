@@ -17,7 +17,5 @@ class UserDatas {
         var nickname
                 : String? = null
         var profileUrl : String? = null
-
-        var otherName: MutableList<String>? = null
     }
 }
