@@ -6,14 +6,23 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.FirebaseFirestore
+import com.jspstudio.travin.R
 import com.jspstudio.travin.databinding.ActivityLoginBinding
 import com.jspstudio.travin.model.UserData
+import com.jspstudio.travin.model.UserDatas
 import com.jspstudio.travin.network.G
 import com.kakao.sdk.auth.model.OAuthToken
+import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.HashMap
 
 // 로그인 & 회원가입 시작 화면 //
 
@@ -45,6 +54,10 @@ class LoginActivity : AppCompatActivity() {
         if (checkSelfPermission(permissions[0]) == PackageManager.PERMISSION_DENIED) {
             requestPermissions(permissions, 100)
         }
+
+        // 카카오 SDK용 키해시 값 얻어오기
+        var keyHash:String= Utility.getKeyHash(this)
+        Log.i("keyHash", keyHash)
     }
 
     private fun kakaoLogin(){
@@ -61,10 +74,30 @@ class LoginActivity : AppCompatActivity() {
                 UserApiClient.instance.me { user, error ->
                     if (user!=null){
                         var id:String = user.id.toString()
-                        var nickname:String = user.kakaoAccount?.name ?: "" // 혹시 이메일이 없다면, 이메일의 기본값을 ""로
+                        var nickname:String = user.kakaoAccount?.profile?.nickname ?: "" // 혹시 이메일이 없다면, 이메일의 기본값을 ""로
 
-                        Toast.makeText(this, "사용자 이메일 정보 : $nickname", Toast.LENGTH_SHORT).show()
-                        G.userAccount= UserData(id, nickname,"")
+                        Toast.makeText(this, "사용자 닉네임 : $nickname", Toast.LENGTH_SHORT).show()
+
+                        // SharedPreferences 에 저장
+                        val pref = getSharedPreferences("account", MODE_PRIVATE)
+                        val editor = pref.edit()
+                        editor.putString("nickname", nickname)
+                        editor.commit()
+
+                        // firebase db에 저장하기 위해 Map Collection으로 묶어서 저장
+                        val firebaseFirestore = FirebaseFirestore.getInstance()
+
+                        val userRef: CollectionReference = firebaseFirestore.collection("users") // 컬렉션명 : users
+
+                        val sdf: SimpleDateFormat = SimpleDateFormat("yyyyMMddHHmmSS")
+
+                        // Document 명을 닉네임으로, Field'값'에 이미지경로 url을 저장
+                        val profile: MutableMap<String, String> = HashMap()
+                        profile["nickname"] = nickname
+                        profile["profile"] = ""
+                        profile["startTime"] = sdf.format(Date())
+
+                        userRef.document(nickname).set(profile)
 
                         // 로그인이 성공했으니 Main 화면으로 전환
                         startActivity(Intent(this, MainActivity::class.java))
