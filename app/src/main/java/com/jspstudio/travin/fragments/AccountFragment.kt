@@ -16,7 +16,6 @@ import com.jspstudio.travin.activities.AccountHotelListActivity
 import com.jspstudio.travin.activities.UploadProfileActivity
 import com.jspstudio.travin.databinding.FragmentAccountBinding
 import com.jspstudio.travin.model.UserDatas
-import com.jspstudio.travin.network.G
 import java.util.*
 
 class AccountFragment : Fragment() {

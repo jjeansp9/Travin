@@ -15,7 +15,6 @@ import com.jspstudio.travin.adapters.AccountFriendResponseRecyclerAdapter
 import com.jspstudio.travin.databinding.ActivityAccountFriendResponseBinding
 import com.jspstudio.travin.model.AccountFriendResponseItem
 import com.jspstudio.travin.model.UserDatas
-import com.jspstudio.travin.network.G
 import java.util.HashMap
 
 

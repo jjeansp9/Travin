@@ -8,12 +8,19 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultCallback
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.jspstudio.tpplaceappbykakaosearchapi.network.RetrofitHelper
 import com.jspstudio.travin.databinding.ActivityLoginBinding
 import com.jspstudio.travin.model.NidUserInfoResponse
-import com.jspstudio.travin.G
 import com.jspstudio.travin.network.RetrofitSignUpService
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.util.Utility
@@ -39,9 +46,10 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        // 카카로 계정으로 로그인
-        binding.kakaoLogin.setOnClickListener{kakaoLogin()}
 
+        binding.kakaoLogin.setOnClickListener{kakaoLogin()} // 카카오 계정으로 로그인
+        binding.naverLogin.setOnClickListener { naverLogin() } // 네이버 계정으로 로그인
+        binding.googleLogin.setOnClickListener { googleLogin() } // 구글 계정으로 로그인
 
         // 회원가입 화면으로 이동
         binding.btn.setOnClickListener { startActivity(Intent(this, SignUpActivity::class.java)) }
@@ -123,7 +131,7 @@ class LoginActivity : AppCompatActivity() {
         // 네이버 개발자 센터 가이드 문서 참고 - 애플리케이션 등록 완료
 
         // 네아로(네이버 아이디 로그인) SDK 초기화
-        NaverIdLoginSDK.initialize(this, "W9cHm9yK9aLyR_iN5VRr", "Y0ABhFRk6_", "TP Place")
+        NaverIdLoginSDK.initialize(this, "Phd4fO7whvOewufQLFfo", "4G8KnmugN5", "Travin")
 
         // 네아로 전용버튼 뷰 사용 대신에 직접 로그인 요청 메소드를 사용
         NaverIdLoginSDK.authenticate(this, object : OAuthLoginCallback {
@@ -178,4 +186,61 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
+    private fun googleLogin(){
+
+        // 구글 로그인 옵션객체 생성 - Builder 이용
+        val signInOptions: GoogleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestId()
+            .build()
+
+        val intent:Intent= GoogleSignIn.getClient(this, signInOptions).signInIntent
+
+        // 로그인 결과를 받기위해 액티비티를 실행
+        googleResultLauncher.launch(intent)
+    }
+
+    // 구글 로그인 화면액티비티를 실행시키고 그 결과를 되돌려받는 작업을 관리하는 객체 생성
+    val googleResultLauncher: ActivityResultLauncher<Intent> = registerForActivityResult(ActivityResultContracts.StartActivityForResult(), object : ActivityResultCallback<ActivityResult>{
+        override fun onActivityResult(result: ActivityResult?) {
+            // 로그인 결과를 가져온 Intent 객체 소환
+            val intent: Intent? = result?.data
+            // 돌아온 Intent 객체에게 구글 계정정보 빼오기
+            val task:Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(intent)
+
+            val account:GoogleSignInAccount = task.result
+            var id:String= account.id.toString()
+
+            Toast.makeText(this@LoginActivity, "구글 로그인 성공", Toast.LENGTH_SHORT).show()
+            // SharedPreferences 에 저장
+            val pref = getSharedPreferences("account", MODE_PRIVATE)
+            val editor = pref.edit()
+            editor.putString("nickname", id)
+            editor.commit()
+
+            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+            finish()
+        }
+
+    })
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
