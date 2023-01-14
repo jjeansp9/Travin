@@ -1,4 +1,4 @@
-package com.jspstudio.travin.network
+package com.jspstudio.travin
 
 import com.jspstudio.travin.model.UserData
 
