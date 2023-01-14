@@ -1,7 +1,6 @@
 package com.jspstudio.travin.activities
 
 import android.Manifest
-import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
@@ -9,17 +8,21 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
-import com.jspstudio.travin.R
+import com.jspstudio.tpplaceappbykakaosearchapi.network.RetrofitHelper
 import com.jspstudio.travin.databinding.ActivityLoginBinding
-import com.jspstudio.travin.model.UserData
-import com.jspstudio.travin.model.UserDatas
-import com.jspstudio.travin.network.G
+import com.jspstudio.travin.model.NidUserInfoResponse
+import com.jspstudio.travin.G
+import com.jspstudio.travin.network.RetrofitSignUpService
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
+import com.navercorp.nid.NaverIdLoginSDK
+import com.navercorp.nid.oauth.OAuthLoginCallback
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.HashMap
@@ -113,6 +116,66 @@ class LoginActivity : AppCompatActivity() {
         }else{
             UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
         }
+    }
+
+    private fun naverLogin(){
+        // 사용자정보를 취득하는 토큰값을 발급받아 REST API 방식으로 사용자정보 취득
+        // 네이버 개발자 센터 가이드 문서 참고 - 애플리케이션 등록 완료
+
+        // 네아로(네이버 아이디 로그인) SDK 초기화
+        NaverIdLoginSDK.initialize(this, "W9cHm9yK9aLyR_iN5VRr", "Y0ABhFRk6_", "TP Place")
+
+        // 네아로 전용버튼 뷰 사용 대신에 직접 로그인 요청 메소드를 사용
+        NaverIdLoginSDK.authenticate(this, object : OAuthLoginCallback {
+            override fun onSuccess() {
+                Toast.makeText(this@LoginActivity, "네이버로그인 성공", Toast.LENGTH_SHORT).show()
+
+                // 사용자 정보를 가져오려면 서버와 HTTP REST API 통신을 해야함
+                // 단, 필요한 요청파라미터가 있음. 사용자정보에 접속할 수 있는 인증키 같은 값 - 토큰이라고 부름
+                val accessToken : String? = NaverIdLoginSDK.getAccessToken()
+
+                // 토큰값을 확인해보기 - 토큰값은 그때그때마다 갱신됨 [ 즉, 1회용 접속키임 ]
+                Log.i("token", accessToken.toString())
+
+                // Retrofit 작업을 통해 사용자 정보 가져오기
+                val retrofit= RetrofitHelper.getRetrofitInstance("https://openapi.naver.com")
+                retrofit.create(RetrofitSignUpService::class.java).getNidUser("Bearer $accessToken").enqueue(object :
+                    Callback<NidUserInfoResponse> {
+                    override fun onResponse(
+                        call: Call<NidUserInfoResponse>,
+                        response: Response<NidUserInfoResponse>
+                    ) {
+                        val userInfo:NidUserInfoResponse? = response.body()
+                        var id:String= userInfo?.response?.id ?: ""
+                        val email:String= userInfo?.response?.email ?: ""
+
+                        Toast.makeText(this@LoginActivity, "$id", Toast.LENGTH_SHORT).show()
+
+                        // SharedPreferences 에 저장
+                        val pref = getSharedPreferences("account", MODE_PRIVATE)
+                        val editor = pref.edit()
+                        editor.putString("nickname", id)
+                        editor.commit()
+
+                        // main 화면으로 이동
+                        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                        finish()
+                    }
+
+                    override fun onFailure(call: Call<NidUserInfoResponse>, t: Throwable) {
+                        Toast.makeText(this@LoginActivity, "회원정보 불러오기 실패 : ${t.message}", Toast.LENGTH_SHORT).show()
+                    }
+
+                })
+            }
+            override fun onFailure(httpStatus: Int, message: String) {
+                Toast.makeText(this@LoginActivity, "로그인 실패 : $message", Toast.LENGTH_SHORT).show()
+            }
+            override fun onError(errorCode: Int, message: String) {
+                Toast.makeText(this@LoginActivity, "error : $message", Toast.LENGTH_SHORT).show()
+            }
+        })
+
     }
 
 }

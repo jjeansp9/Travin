@@ -1,4 +1,4 @@
-package com.jspstudio.travin.network
+package com.jspstudio.travin
 
 import android.app.Application
 import com.kakao.sdk.common.KakaoSdk
