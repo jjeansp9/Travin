@@ -34,7 +34,7 @@ class AccountHotelListActivity : AppCompatActivity() {
             }
         })
 
-        testData() // 호텔데이터 리사이클러뷰 작동하는지 테스트하는 메소드
+        testData() // 호텔데이터 리사이클러뷰 작동하는지 테스트하는 메소드 추후 레트로핏을 사용하여 openAPI 추가
 
     }
 
