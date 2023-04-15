@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
 
         //프레그먼트 관리자 객체 소환
         fragmentManager = supportFragmentManager
-        fragmentManager!!.beginTransaction()?.add(R.id.fragment_container, fragments[0]).commit()
+        fragmentManager!!.beginTransaction().add(R.id.fragment_container, fragments[0]).commit()
 
             binding.bnv.setOnItemSelectedListener(NavigationBarView.OnItemSelectedListener {
                 var tran : FragmentTransaction = fragmentManager!!.beginTransaction()
