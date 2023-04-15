@@ -165,7 +165,7 @@ class LoginActivity : AppCompatActivity() {
                         editor.putString("nickname", id)
                         editor.commit()
 
-                        // main 화면으로 이동
+                        // main 화면으로 이동.
                         startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                         finish()
                     }
