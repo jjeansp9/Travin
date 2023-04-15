@@ -117,7 +117,7 @@ class HomeFragment : Fragment() {
                         commentItems.add(item)
                         commentBinding.commentRecycler.adapter?.notifyDataSetChanged()
 
-                        // 리사이클러뷰 갱신
+                        // 리사이클러뷰 갱신.
                         commentBinding.commentRecycler.adapter?.notifyItemInserted(commentItems.size -1)
                         commentBinding.commentRecycler.scrollToPosition(commentBinding.commentRecycler.adapter!!.itemCount -1)
                     }

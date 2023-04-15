@@ -8,6 +8,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.jspstudio.travin.databinding.ActivitySignInBinding
 import com.jspstudio.travin.model.UserData
 import com.jspstudio.travin.model.UserDatas
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.*
 
 // 로그인 화면 //
@@ -94,30 +97,33 @@ class SignInActivity : AppCompatActivity() {
         }
 
     // 레트로핏으로 서버에 json형태(연관배열)의 저장된 데이터들 불러오기
-    //        val retrofit: Retrofit = RetrofitSignUpHelper().getRetrofitInstance()
-//        val retrofitSignUpService = retrofit.create(RetrofitSignUpService::class.java)
-//
-//        val call: Call<ArrayList<UserData?>?>? = retrofitSignUpService.loadUserDataFromServer()
-//        call!!.enqueue(object : Callback<ArrayList<UserData?>?> {
-//            override fun onResponse(
-//                call: Call<ArrayList<UserData?>?>,
-//                response: Response<ArrayList<UserData?>?>) {
-//
-//                // 결과 json array를 곧바로 파싱하여 Arraylist<MarketItem>로 변환된 리스트 받기
-//                val items: ArrayList<UserData?>? = response.body()
-//
-//                val buffer = StringBuffer()
-//                for (item in items!!) {
-//                    buffer.append(item?.id )
-//                }
-//                binding.tv.text = buffer.toString()
-//
-//            }
-//
-//            override fun onFailure(call: Call<ArrayList<UserData?>?>, t: Throwable) {
-//                Toast.makeText(this@SignInActivity, "error : " + t.message, Toast.LENGTH_SHORT).show()
-//            }
-//        })
+            val retrofit: Retrofit = RetrofitSignUpHelper().getRetrofitInstance()
+        val retrofitSignUpService = retrofit.create(RetrofitSignUpService::class.java)
+
+        val call: Call<ArrayList<UserData?>?>? = retrofitSignUpService.loadUserDataFromServer()
+        call!!.enqueue(object : Callback<ArrayList<UserData?>?> {
+            override fun onResponse(
+                call: Call<ArrayList<UserData?>?>,
+                response: Response<ArrayList<UserData?>?>
+            ) {
+
+                // 결과 json array를 곧바로 파싱하여 Arraylist<MarketItem>로 변환된 리스트 받기
+                val items: ArrayList<UserData?>? = response.body()
+
+                val buffer = StringBuffer()
+                for (item in items!!) {
+                    buffer.append(item?.id )
+                }
+                binding.tv.text = buffer.toString()
+
+
+
+            }
+
+            override fun onFailure(call: Call<ArrayList<UserData?>?>, t: Throwable) {
+                Toast.makeText(this@SignInActivity, "error : " + t.message, Toast.LENGTH_SHORT).show()
+            }
+        })
 
     } // clickSignIn()
 
