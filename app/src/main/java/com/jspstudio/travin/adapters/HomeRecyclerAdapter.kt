@@ -43,7 +43,7 @@ class HomeRecyclerAdapter constructor(val context: Context, var homeItems:Mutabl
     override fun onBindViewHolder(holder: VH, position: Int) {
 
         // (1) 리스트 내 항목 클릭 시 onClick() 호출
-        holder.binding.tvHomeName.setOnClickListener { itemClickListener.nameClick(it, position) }
+        holder.binding.tvHomeName.setOnClickListener { itemClickListener.nameClick(holder.binding.tvHomeName, position) }
         holder.binding.tvHomeLocation.setOnClickListener { itemClickListener.locationClick(it, position) }
         holder.binding.tvHomeContents.setOnClickListener { itemClickListener.contentsClick(it, position) }
         holder.binding.icHomeComment.setOnClickListener { itemClickListener.commentClick(it, position) }
