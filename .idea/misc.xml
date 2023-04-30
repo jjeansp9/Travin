@@ -84,13 +84,10 @@
         <entry key="..\:/ProgramFiles/Android/Travin/app/src/main/res/layout/activity_main.xml" value="0.15833333333333333" />
         <entry key="..\:/ProgramFiles/Android/Travin/app/src/main/res/layout/activity_message_chatting.xml" value="0.31261261261261264" />
         <entry key="..\:/ProgramFiles/Android/Travin/app/src/main/res/layout/fragment_account.xml" value="0.31261261261261264" />
-        <entry key="..\:/ProgramFiles/Android/Travin/app/src/main/res/layout/fragment_community.xml" value="0.30844444444444447" />
         <entry key="..\:/ProgramFiles/Android/Travin/app/src/main/res/layout/fragment_home.xml" value="0.31261261261261264" />
         <entry key="..\:/ProgramFiles/Android/Travin/app/src/main/res/layout/fragment_message.xml" value="0.31261261261261264" />
         <entry key="..\:/ProgramFiles/Android/Travin/app/src/main/res/layout/fragment_tab4_accompany.xml" value="0.31261261261261264" />
         <entry key="..\:/ProgramFiles/Android/Travin/app/src/main/res/layout/item_recycler_message.xml" value="0.31261261261261264" />
-        <entry key="..\:/ProgramFiles/Android/Travin/app/src/main/res/layout/item_recycler_message_mychat.xml" value="0.3346846846846847" />
-        <entry key="..\:/ProgramFiles/Android/Travin/app/src/main/res/layout/item_recycler_message_otherchat.xml" value="0.3346846846846847" />
         <entry key="..\:/ProgramFiles/Android/Travin/app/src/main/res/menu/bnv_chat.xml" value="0.29324324324324325" />
       </map>
     </option>

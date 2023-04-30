@@ -70,6 +70,7 @@ class HomeFragment : Fragment() {
 
     // 업로드글들 각 아이템마다 클릭할때 작동
     fun clickUploadData(){
+
         listAdapter?.setItemClickListener (object : HomeRecyclerAdapter.OnItemClickListener{
 
             // 이름
