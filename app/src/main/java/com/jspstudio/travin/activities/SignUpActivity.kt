@@ -67,8 +67,6 @@ class SignUpActivity : AppCompatActivity() {
         val retrofit: Retrofit = RetrofitSignUpHelper().getRetrofitInstance()
         val retrofitSignUpService = retrofit.create(RetrofitSignUpService::class.java)
 
-        // 데이터들 박스
-
         // 2. 데이터들 박스
         val userDataPart: MutableMap<String, String> = HashMap()
         userDataPart["nickname"] = nickname
