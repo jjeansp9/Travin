@@ -48,7 +48,7 @@ class MessageChattingActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        supportActionBar!!.title = otherName // 메세지 상대 닉네임
+        supportActionBar!!.title = otherName // 메세지 상대 닉네임.
     }
 
 
