@@ -18,9 +18,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
-import com.jspstudio.tpplaceappbykakaosearchapi.network.RetrofitHelper
 import com.jspstudio.travin.databinding.ActivityLoginBinding
 import com.jspstudio.travin.model.NidUserInfoResponse
+import com.jspstudio.travin.network.RetrofitHelper
 import com.jspstudio.travin.network.RetrofitSignUpService
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.util.Utility
