@@ -42,7 +42,7 @@ class MessageChattingActivity : AppCompatActivity() {
     }
 
     fun actionBar(){
-        // 메시지 상대방 닉네임 가져오기
+        // 메시지 상대방 닉네임 가져오기.
         val pref = getSharedPreferences("otherAccount", AppCompatActivity.MODE_PRIVATE)
         val otherName = pref.getString("nickname", null)
 
