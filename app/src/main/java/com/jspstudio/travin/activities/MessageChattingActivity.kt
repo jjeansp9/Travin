@@ -21,7 +21,7 @@ class MessageChattingActivity : AppCompatActivity() {
 
     var items : MutableList<MessageChattingRecyclerItem> = mutableListOf()
 
-    val firebaseFirestore = FirebaseFirestore.getInstance() // 파이어스토어 생성
+    val firebaseFirestore = FirebaseFirestore.getInstance() // 파이어스토어 생성.
     var chatRef : CollectionReference? = null
     var otherChatRef : CollectionReference? = null
     var num: Int= 0
