@@ -14,7 +14,7 @@ import com.jspstudio.travin.databinding.FragmentHomeBinding
 
 class CommunityFragment : Fragment() {
 
-    val tabMenu = arrayOf(" 커뮤니티", "여행 질문", "여행 꿀팁", "여행 동행", "여행 후기 ") // 탭메뉴 이름
+    val tabMenu = arrayOf(" 커뮤니티", "여행 질문", "여행 꿀팁", "여행 동행", "여행 후기 ") // 탭메뉴 이름.
 
     lateinit var binding: FragmentCommunityBinding
 
