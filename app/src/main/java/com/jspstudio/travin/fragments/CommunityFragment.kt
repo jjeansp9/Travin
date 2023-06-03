@@ -40,7 +40,7 @@ class CommunityFragment : Fragment() {
         val mediator = TabLayoutMediator(binding.tabLayout, binding.pager) { tab, position -> tab.text = tabMenu[position] }
         mediator.attach()
 
-        // 플로팅버튼 클릭하면 업로드할 탭 메뉴 팝업창 띄움.
+        // 플로팅버튼 클릭하면 업로드할 탭 메뉴 팝업창 띄움
         clickFabButton()
 
     }
