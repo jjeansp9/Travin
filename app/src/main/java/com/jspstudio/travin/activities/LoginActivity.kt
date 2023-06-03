@@ -199,12 +199,12 @@ class LoginActivity : AppCompatActivity() {
         googleResultLauncher.launch(intent)
     }
 
-    // 구글 로그인 화면액티비티를 실행시키고 그 결과를 되돌려받는 작업을 관리하는 객체 생성.
+    // 구글 로그인 화면액티비티를 실행시키고 그 결과를 되돌려받는 작업을 관리하는 객체 생성
     val googleResultLauncher: ActivityResultLauncher<Intent> = registerForActivityResult(ActivityResultContracts.StartActivityForResult(), object : ActivityResultCallback<ActivityResult>{
         override fun onActivityResult(result: ActivityResult?) {
             // 로그인 결과를 가져온 Intent 객체 소환
             val intent: Intent? = result?.data
-            // 돌아온 Intent 객체에게 구글 계정정보 빼오기
+            // 돌아온 Intent 객체에게 구글 계정정보 빼오기.
             val task:Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(intent)
 
             val account:GoogleSignInAccount = task.result
