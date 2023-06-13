@@ -44,7 +44,7 @@ class MessageChattingRecyclerAdapter constructor(val context: Context, var msgIt
         holder.name.text = item.nickname
         holder.time.text = item.time
         holder.msg.text = item.message
-        //Glide.with(context).load(R.drawable.ic_profile).into(holder.myBinding.msgChatMyProfile)
+        //Glide.with(context).load(R.drawable.ic_profile).into(holder.myBinding.msgChatMyProfile).
 
 
     }
