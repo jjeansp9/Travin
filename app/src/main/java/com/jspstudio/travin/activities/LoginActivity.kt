@@ -204,7 +204,7 @@ class LoginActivity : AppCompatActivity() {
         override fun onActivityResult(result: ActivityResult?) {
             // 로그인 결과를 가져온 Intent 객체 소환
             val intent: Intent? = result?.data
-            // 돌아온 Intent 객체에게 구글 계정정보 빼오기.
+            // 돌아온 Intent 객체에게 구글 계정정보 빼오기
             val task:Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(intent)
 
             val account:GoogleSignInAccount = task.result
